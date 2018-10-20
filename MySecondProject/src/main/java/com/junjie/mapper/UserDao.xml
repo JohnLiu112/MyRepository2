@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.junjie.dao.UserDao">
+    <select id="queryUser" parameterType="com.junjie.model.User" resultMap="userMap">
+        SELECT * FROM T_USER WHERE U_NAME=#{u_name} and U_PASS=#{u_pass}
+    </select>
+    
+    <select id="queryUserByName" parameterType="String" resultMap="userMap">
+        SELECT * FROM T_USER WHERE U_NAME=#{u_name}
+
+    </select>
+
+    <select id="queryUserByUid" parameterType="integer" resultMap="userMap">
+        SELECT * FROM T_USER WHERE U_ID=#{u_id}
+    </select>
+
+    <insert id="saveUser" parameterType="User" useGeneratedKeys="true">
+        INSERT INTO T_USER VALUES (USER_SEQ.nextval,#{u_name},#{u_pass})
+    </insert>
+
+    <delete id="deleteUser" parameterType="User">
+        DELETE FROM T_USER WHERE U_ID=#{u_id}
+    </delete>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE T_USER
+        <set>
+            <if test="u_name!=null and u_name!=''">
+                U_NAME=#{u_name},
+            </if>
+            <if test="u_pass!=null and u_pass!=''">
+                U_PASS=#{u_pass}
+            </if>
+        </set>
+        <where>
+            <if test="u_id!=null">
+                U_ID=#{u_id}
+            </if>
+        </where>
+    </update>
+    <select id="queryAllUsers" resultMap="userMap">
+        SELECT * FROM T_USER
+    </select>
+    <resultMap id="userMap" type="User">
+        <id property="u_id" column="U_ID" jdbcType="INTEGER"/>
+        <result property="u_name" column="U_NAME" jdbcType="VARCHAR"/>
+        <result property="u_pass" column="U_PASS" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

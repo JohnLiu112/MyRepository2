@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.junjie.dao.ResumeDao">
+    <insert id="addResume" parameterType="Resume" useGeneratedKeys="true">
+        INSERT INTO T_RESUME
+        VALUES
+        (RESUME_SEQ.nextval,#{rsm_name},#{rsm_gender},#{rsm_age},
+        #{rsm_nationality},#{rsm_hometown},#{rsm_college},#{rsm_major},
+        #{rsm_edu_bg},#{rsm_post},#{rsm_phone},#{rsm_email},#{rsm_addr}
+        ,#{rsm_self_eval},#{rsm_major_intro},#{rsm_e_level},#{rsm_comp_level}
+        ,#{rsm_social_prac},#{rsm_u_id})
+    </insert>
+    <update id="updateResume" parameterType="Resume">
+        UPDATE T_RESUME
+        <set>
+            <if test="rsm_name!=null">
+                rsm_name=#{rsm_name},
+            </if>
+            <if test="rsm_gender!=null">
+                rsm_gender=#{rsm_gender},
+            </if>
+            <if test="rsm_age!=null">
+                rsm_age=#{rsm_age},
+            </if>
+            <if test="rsm_nationality!=null">
+                rsm_nationality=#{rsm_nationality},
+            </if>
+            <if test="rsm_hometown!=null">
+                rsm_hometown=#{rsm_hometown},
+            </if>
+            <if test="rsm_college!=null">
+                rsm_college=#{rsm_college},
+            </if>
+            <if test="rsm_major!=null">
+                rsm_major=#{rsm_major},
+            </if>
+            <if test="rsm_edu_bg!=null">
+                rsm_edu_bg=#{rsm_edu_bg},
+            </if>
+            <if test="rsm_post!=null">
+                rsm_post=#{rsm_post},
+            </if>
+            <if test="rsm_phone!=null">
+                rsm_phone=#{rsm_phone},
+            </if>
+            <if test="rsm_email!=null">
+                rsm_email=#{rsm_email},
+            </if>
+            <if test="rsm_addr!=null">
+                rsm_addr=#{rsm_addr},
+            </if>
+            <if test="rsm_self_eval!=null">
+                rsm_self_eval=#{rsm_self_eval},
+            </if>
+            <if test="rsm_major_intro!=null">
+                rsm_major_intro=#{rsm_major_intro},
+            </if>
+            <if test="rsm_e_level!=null">
+                rsm_e_level=#{rsm_e_level},
+            </if>
+            <if test="rsm_comp_level!=null">
+                rsm_comp_level=#{rsm_comp_level},
+            </if>
+            <if test="rsm_social_prac!=null">
+                rsm_social_prac=#{rsm_social_prac},
+            </if>
+            <if test="rsm_u_id!=null">
+                rsm_u_id=#{rsm_u_id}
+            </if>
+        </set>
+        <where>
+            <if test="rsm_id!=null">
+                rsm_id=#{rsm_id}
+            </if>
+        </where>
+    </update>
+    <delete id="deleteResume" parameterType="Resume">
+        DELETE FROM T_RESUME WHERE RSM_ID=#{rsm_id}
+    </delete>
+    <select id="getResumeById" resultType="Resume" parameterType="Resume">
+        SELECT * FROM T_RESUME WHERE RSM_ID=#{rsm_id}
+    </select>
+    <select id="getAllResumes" resultType="Resume">
+        SELECT * FROM T_RESUME;
+    </select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--必需-->
+    <import resource="classpath:applicationContext.xml"/>
+
+    <!--开启注解扫描-->
+    <context:component-scan base-package="com.junjie"/>
+
+    <!--配置mvc默认的注解驱动：注解的处理器映射器、注解的处理器适配器-->
+    <mvc:annotation-driven/>
+
+    <!--解决编码错误问题-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean id="messageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--视图解析器-->
+    <!--视图解析器解析后的视图物理地址：视图前缀+视图名+视图后缀-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--视图前缀：指视图所在的目录文件夹-->
+        <property name="prefix" value="/WEB-INF/"/>
+        <!--视图后缀：.jsp-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>

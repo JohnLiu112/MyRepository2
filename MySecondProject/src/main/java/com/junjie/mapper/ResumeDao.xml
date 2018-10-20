@@ -83,4 +83,7 @@
     <select id="getAllResumes" resultType="Resume">
         SELECT * FROM T_RESUME;
     </select>
+    <select id="getResumeByUid" resultType="Resume">
+        SELECT * FROM T_RESUME WHERE RSM_U_ID=#{rsm_u_id}
+    </select>
 </mapper>

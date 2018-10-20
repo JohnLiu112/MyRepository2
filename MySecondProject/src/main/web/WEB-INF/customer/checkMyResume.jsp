@@ -106,8 +106,8 @@
         </tr>
     </table>
     <input type="submit" value="修改" onclick="this.form.action='resume/toUpdateResume'">
+    <input type="submit" value="删除" onclick="this.form.action='resume/deleteResume'">
+    <input type="submit" value="返回" onclick="this.form.action='user/checkUserMenu'">
 </form>
-<input type="submit" value="返回" onclick="this.form.action='user/checkUserMenu'">
-
 </body>
 </html>

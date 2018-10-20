@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.junjie.dao.RecruDao">
+
+    <insert id="addRecru" parameterType="Recru">
+        INSERT INTO T_RECRU
+        VALUES (RECRU_SEQ.nextval,#{recru_job_name},#{recru_workplace},
+        #{recru_salary},#{recru_release_time},#{recru_spec_wp},#{recru_job_requirement},
+        #{recru_job_duties},#{recru_dep_info},#{recru_firm_intro},#{recru_firm_bonus},
+        #{recru_state})
+    </insert>
+    <update id="updateRecru" parameterType="Recru">
+        UPDATE T_RECRU SET RECRU_JOB_NAME=#{recru_job_name},recru_firm_name=#{recru_firm_name},
+        recru_workplace=#{recru_workplace},recru_salary=#{recru_salary},recru_release_time=#{recru_release_time},
+        recru_spec_wp=#{recru_spec_wp},recru_job_requirement=#{recru_job_requirement},recru_job_duties=#{recru_job_duties},
+        recru_dep_info=#{recru_dep_info},recru_firm_intro=#{recru_firm_intro},recru_firm_bonus=#{recru_firm_bonus},
+        recru_state=#{recru_state}
+         <where>
+             <if test="recru_id!=null">
+                 recru_id=#{recru_id}
+             </if>
+         </where>
+    </update>
+    <delete id="deleteRecru" parameterType="Recru">
+        DELETE FROM T_RECRU WHERE RECRU_ID=#{recru_id}
+    </delete>
+    <select id="getRecruById" resultType="Recru" parameterType="Recru">
+        SELECT * FROM T_RECRU WHERE RECRU_ID=#{recru_id}
+    </select>
+    <select id="getRecruByState" resultType="Recru" parameterType="Recru">
+        SELECT * FROM T_RECRU WHERE RECRU_STATE=#{recru_state}
+    </select>
+    <select id="getAllRecrus" resultType="Recru">
+        SELECT * FROM T_RECRU
+    </select>
+</mapper>

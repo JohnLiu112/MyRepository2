@@ -20,8 +20,19 @@
             background-color: ghostwhite;
         }
         ul li{
-            list-style-type: none;
+            float: left;
+            list-style: none;
         }
+        div{
+            float: left;
+        }
+        tr{
+            border-width: thin;
+        }
+        td{
+            border-width: thin;
+        }
+
     </style>
 </head>
 <body id="bd">
@@ -31,10 +42,35 @@
     用户id：${sessionScope.u.u_id}
 </h3>
 <form action="" method="post">
-    <ul id="u1">
-        <li><input type="submit" value="编辑个人简历" onclick="this.form.action='resume/toAddResume'"></li>
-        <li><input type="submit" value="更新个人简历" onclick="this.form.action='resume/toUpdateResume'"></li>
-    </ul>
+    <div>
+        <ul id="u1">
+            <li><input type="submit" value="编辑个人简历" onclick="this.form.action='resume/toAddResume'"></li>
+            <li><input type="submit" value="更新个人简历" onclick="this.form.action='resume/toUpdateResume'"></li>
+        </ul>
+    </div>
+    <br/>
+    <div>
+        <table border="1">
+            <c:forEach var="r" items="${sessionScope.recrus}">
+                <tr>
+                    <td><c:out value="${r.recru_job_name}"></c:out></td>
+                    <td>
+                        <input type="submit" value="查看" onclick="this.form.action='recru/checkRecruDetails'">
+                        <input type="hidden" name="recru_id" value="${r.recru_id}">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><c:out value="${r.recru_salary}"></c:out></td>
+                    <td><c:out value="${r.recru_firm_name}"></c:out></td>
+                </tr>
+                <tr>
+                    <td><c:out value="${r.recru_firm_bonus}"></c:out></td>
+                    <td><c:out value="${r.recru_workplace}"></c:out></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </form>
 
 <h3 style="color: red">${requestScope.error}</h3>

@@ -12,5 +12,6 @@ public interface ResumeService {
     boolean deleteResume(Resume resume);
     boolean updateResume(Resume resume);
     Resume getResumeById(Resume resume);
+    Resume getResumeByUid(Resume resume);
     List<Resume> getAllResumes();
 }

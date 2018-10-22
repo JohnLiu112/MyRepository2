@@ -2,6 +2,7 @@ package com.junjie.service;
 
 import com.junjie.model.Recru;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,4 +15,6 @@ public interface RecruService {
     Recru getRecruById(Recru recru);
     List<Recru> getRecruByState(Recru recru);
     List<Recru> getAllRecrus();
+    List<Recru> getRecrusByStateAndLimits(int recru_state,int beginIndex,int pageSize);
+    List<Recru> getRecrusByLimits(int beginIndex,int pageSize);
 }

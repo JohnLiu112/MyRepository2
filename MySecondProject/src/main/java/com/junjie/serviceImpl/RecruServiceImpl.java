@@ -5,13 +5,14 @@ import com.junjie.model.Recru;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by 刘俊杰 on 2018/10/20.
  */
 @Service
-public class RecruService implements com.junjie.service.RecruService {
+public class RecruServiceImpl implements com.junjie.service.RecruService {
     @Autowired
     private RecruDao recruDao;
 
@@ -55,5 +56,26 @@ public class RecruService implements com.junjie.service.RecruService {
 
     public List<Recru> getAllRecrus() {
         return recruDao.getAllRecrus();
+    }
+
+    public List<Recru> getRecrusByStateAndLimits(int recru_state,int beginIndex,int pageSize) {
+        if (recru_state!=1||recru_state!=0||beginIndex<=0||pageSize<1){
+            return null;
+        }
+        HashMap<String,Object> hashMap=new HashMap<String, Object>();
+        hashMap.put("recru_state",recru_state);
+        hashMap.put("beginIndex",(beginIndex-1)*pageSize+1);
+        hashMap.put("pageSize",pageSize*beginIndex);
+        return recruDao.getRecrusByStateAndLimits(hashMap);
+    }
+
+    public List<Recru> getRecrusByLimits(int beginIndex, int pageSize) {
+        if (beginIndex<=0||pageSize<1){
+            return null;
+        }
+        HashMap<String,Object> hashMap=new HashMap<String, Object>();
+        hashMap.put("beginIndex",(beginIndex-1)*pageSize+1);
+        hashMap.put("pageSize",pageSize*beginIndex);
+        return recruDao.getRecrusByLimits(hashMap);
     }
 }

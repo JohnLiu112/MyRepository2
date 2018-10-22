@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.junjie.dao.OfferDao">
+
+    <insert id="addOffer" parameterType="Offer" useGeneratedKeys="true">
+        INSERT INTO T_OFFER VALUES
+        (OFFER_SEQ.nextval,#{offer_resume_id},#{offer_recru_id},#{offer_sending_state},
+        #{offer_emp_state},#{offer_u_id})
+    </insert>
+    <update id="updateOffer" parameterType="Offer">
+        UPDATE T_OFFER
+        <set>
+            <if test="offer_resume_id!=null">
+                offer_resume_id=#{offer_resume_id},
+            </if>
+            <if test="offer_recru_id!=null">
+                offer_recru_id=#{offer_recru_id},
+            </if>
+            <if test="offer_sending_state!=null">
+                offer_sending_state=#{offer_sending_state},
+            </if>
+            <if test="offer_emp_state!=null">
+                offer_emp_state=#{offer_emp_state},
+            </if>
+            <if test="offer_u_id!=null">
+                offer_u_id=#{offer_u_id}
+            </if>
+        </set>
+        <where>
+            <if test="offer_id!=null">
+                offer_id=#{offer_id}
+            </if>
+        </where>
+    </update>
+    <delete id="deleteOffer" parameterType="Offer">
+        DELETE FROM T_OFFER WHERE OFFER_ID=#{offer_id}
+    </delete>
+    <select id="getOfferById" resultType="Offer" parameterType="Offer">
+        SELECT * FROM T_OFFER WHERE OFFER_ID=#{offer_id}
+    </select>
+    <select id="getAllOffers" resultType="Offer">
+        SELECT * FROM T_OFFER
+    </select>
+    <select id="getOfferByUidAndLimits" resultType="Offer" parameterType="hashmap">
+        SELECT * FROM (SELECT rownum rn,* FROM T_OFFER WHERE OFFER_U_ID=#{offer_u_id})t_o
+        where t_o.rn between #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getOffersByUid" resultType="Offer" parameterType="integer">
+        SELECT * FROM T_OFFER WHERE OFFER_U_ID=#{uid}
+    </select>
+    <select id="getOfferByRecruIdAndUid" resultType="Offer" parameterType="integer">
+        SELECT * FROM T_OFFER WHERE OFFER_RECRU_ID=#{0} AND OFFER_U_ID=#{1}
+    </select>
+</mapper>

@@ -33,4 +33,14 @@
     <select id="getAllRecrus" resultType="Recru">
         SELECT * FROM T_RECRU
     </select>
+    <select id="getRecrusByStateAndLimits" resultType="Recru" parameterType="hashmap">
+        SELECT t_recru.* FROM
+        (SELECT rownum rn,t_r.* FROM T_RECRU t_r WHERE t_r.RECRU_STATE=#{recru_state}) t_recru
+        where t_recru.rn between #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getRecrusByLimits" resultType="Recru" parameterType="hashmap">
+        SELECT t_recru.* FROM
+        (SELECT rownum rn,t_r.* FROM T_RECRU t_r) t_recru
+        WHERE t_recru.rn BETWEEN #{beginIndex} AND #{pageSize}
+    </select>
 </mapper>

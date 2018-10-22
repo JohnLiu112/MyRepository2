@@ -2,6 +2,7 @@ package com.junjie.dao;
 
 import com.junjie.model.Recru;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,5 +15,7 @@ public interface RecruDao {
     Recru getRecruById(Recru recru);
     List<Recru> getRecruByState(Recru recru);
     List<Recru> getAllRecrus();
+    List<Recru> getRecrusByStateAndLimits(HashMap<String,Object> hashMap);
+    List<Recru> getRecrusByLimits(HashMap<String,Object> hashMap);
 
 }

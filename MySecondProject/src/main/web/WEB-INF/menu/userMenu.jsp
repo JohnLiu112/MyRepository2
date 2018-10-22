@@ -46,6 +46,7 @@
         <ul id="u1">
             <li><input type="submit" value="编辑个人简历" onclick="this.form.action='resume/toAddResume'"></li>
             <li><input type="submit" value="更新个人简历" onclick="this.form.action='resume/toUpdateResume'"></li>
+            <li><input type="submit" value="我的申请" onclick="this.form.action='recru/toJobApplied'"></li>
         </ul>
     </div>
     <br/>
@@ -53,12 +54,15 @@
         <table border="1">
             <c:forEach var="r" items="${sessionScope.recrus}">
                 <tr>
-                    <td><c:out value="${r.recru_job_name}"></c:out></td>
                     <td>
-                        <input type="submit" value="查看" onclick="this.form.action='recru/checkRecruDetails'">
-                        <input type="hidden" name="recru_id" value="${r.recru_id}">
+                        <c:out value="${r.recru_job_name}"></c:out>
                     </td>
-
+                    <form action="" method="post">
+                        <td>
+                            <input type="submit" value="查看" onclick="this.form.action='recru/checkRecruDetails'">
+                            <input type="hidden" name="recru_id" value="${r.recru_id}">
+                        </td>
+                    </form>
                 </tr>
                 <tr>
                     <td><c:out value="${r.recru_salary}"></c:out></td>
@@ -70,9 +74,15 @@
                 </tr>
             </c:forEach>
         </table>
+
+        <c:if test="${sessionScope.totalPages!=0}">
+            <c:forEach  begin="1" end="${sessionScope.totalPages}" var="i">
+                <a href="recru/checkRecru?currentPage=${i}">${i}</a>
+            </c:forEach>
+        </c:if>
     </div>
 </form>
 
-<h3 style="color: red">${requestScope.error}</h3>
+<h3 style="color: red">${requestScope.msg}</h3>
 </body>
 </html>

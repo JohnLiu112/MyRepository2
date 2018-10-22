@@ -57,7 +57,7 @@ public class UserController {
                 response.addCookie(cookie);
             }
             model.addAttribute("msg","登录成功");
-            return "redirect:/recru/checkRecru";
+            return "redirect:/recru/checkRecru?currentPage=1";
         } else {
             model.addAttribute("msg", "用户名或密码错误");
             return "menu/login";

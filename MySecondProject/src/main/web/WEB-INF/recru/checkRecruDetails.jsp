@@ -39,7 +39,10 @@
             <td><c:out value="${sessionScope.recru.recru_spec_wp}"></c:out></td>
         </tr>
         <tr>
-            <td><input type="submit" value="申请职位" onclick="this.form.action='recru/job_apply'"></td>
+            <td>
+                <input type="submit" value="申请职位" onclick="this.form.action='recru/job_apply'">
+                <input type="hidden" name="recru_id" value="${sessionScope.recru.recru_id}">
+            </td>
         </tr>
         <tr>
 
@@ -61,6 +64,11 @@
             </td>
         </tr>
     </table>
+
 </form>
+<form action="recru/checkRecru?currentPage=1" method="post">
+    <input type="submit" value="返回">
+</form>
+<h3 style="color: red">${requestScope.msg}</h3>
 </body>
 </html>

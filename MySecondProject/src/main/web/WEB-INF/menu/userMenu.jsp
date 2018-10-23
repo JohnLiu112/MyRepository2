@@ -46,7 +46,7 @@
         <ul id="u1">
             <li><input type="submit" value="编辑个人简历" onclick="this.form.action='resume/toAddResume'"></li>
             <li><input type="submit" value="更新个人简历" onclick="this.form.action='resume/toUpdateResume'"></li>
-            <li><input type="submit" value="我的申请" onclick="this.form.action='recru/toJobApplied'"></li>
+            <li><input type="submit" value="我的申请" onclick="this.form.action='recru/toJobApplied?currentPage=1'"></li>
         </ul>
     </div>
     <br/>

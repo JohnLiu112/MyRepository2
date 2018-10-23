@@ -14,7 +14,9 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
+    <script src="<%=request.getContextPath()%>/Resources/jquery-3.2.1.js"></script>
     <title>Title</title>
+
 </head>
 <body>
 <form action="" method="post">
@@ -26,28 +28,29 @@
                 <td>
                     <c:forEach items="${sessionScope.recrus}" var="recrus">
                         <c:if test="${o.offer_recru_id==recrus.recru_id}">
-                            <c:out value="${r.recru_job_name}"></c:out>
+                            <c:out value="${recrus.recru_job_name}"></c:out>
                         </c:if>
                     </c:forEach>
                 </td>
-                <td>
-                    <input type="submit" value="查看职位信息信息" onclick="this.form.action='recru/checkRecruDetails'">
-                    <input type="hidden" name="recru_id" value="${o.offer_recru_id}">
-                </td>
-
+                <form action="" method="post">
+                    <td>
+                        <input type="submit"  value="查看职位信息信息" onclick="this.form.action='recru/checkRecruDetails'">
+                        <input type="hidden" name="recru_id" value="${o.offer_recru_id}">
+                    </td>
+                </form>
             </tr>
             <tr>
                 <td>
                     <c:forEach items="${sessionScope.recrus}" var="recrus">
                         <c:if test="${o.offer_recru_id==recrus.recru_id}">
-                            <c:out value="${r.recru_salary}"></c:out>
+                            <c:out value="${recrus.recru_salary}"></c:out>
                         </c:if>
                     </c:forEach>
                 </td>
                 <td>
                     <c:forEach items="${sessionScope.recrus}" var="recrus">
                         <c:if test="${o.offer_recru_id==recrus.recru_id}">
-                            <c:out value="${r.recru_firm_name}"></c:out>
+                            <c:out value="${recrus.recru_firm_name}"></c:out>
                         </c:if>
                     </c:forEach>
                 </td>
@@ -56,14 +59,14 @@
                 <td>
                     <c:forEach items="${sessionScope.recrus}" var="recrus">
                         <c:if test="${o.offer_recru_id==recrus.recru_id}">
-                            <c:out value="${r.recru_firm_bonus}"></c:out>
+                            <c:out value="${recrus.recru_firm_bonus}"></c:out>
                         </c:if>
                     </c:forEach>
                 </td>
                 <td>
                     <c:forEach items="${sessionScope.recrus}" var="recrus">
                         <c:if test="${o.offer_recru_id==recrus.recru_id}">
-                            <c:out value="${r.recru_workplace}"></c:out>
+                            <c:out value="${recrus.recru_workplace}"></c:out>
                         </c:if>
                     </c:forEach>
                 </td>

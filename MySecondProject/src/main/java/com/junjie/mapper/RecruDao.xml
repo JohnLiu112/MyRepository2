@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.junjie.dao.RecruDao">
 
-    <insert id="addRecru" parameterType="Recru">
+    <insert id="addRecru" parameterType="Recru" useGeneratedKeys="true">
         INSERT INTO T_RECRU
-        VALUES (RECRU_SEQ.nextval,#{recru_job_name},#{recru_workplace},
+        VALUES (RECRU_SEQ.nextval,#{recru_job_name},#{recru_firm_name},#{recru_workplace},
         #{recru_salary},#{recru_release_time},#{recru_spec_wp},#{recru_job_requirement},
         #{recru_job_duties},#{recru_dep_info},#{recru_firm_intro},#{recru_firm_bonus},
         #{recru_state})

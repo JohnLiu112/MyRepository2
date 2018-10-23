@@ -14,6 +14,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
+    <script src="<%=request.getContextPath()%>/Resources/jquery-3.2.1.js"></script>
     <title>Title</title>
     <style>
         table{
@@ -26,6 +27,22 @@
             border-width: thin;
         }
     </style>
+    <script>
+        $(function () {
+            $("input[name='applyJobs']").click(function () {
+                $.ajax({
+                    type:post,
+                    url:"recru/checkApplication",
+                    data:{recru_id:$("input[name='recru_id']").val()},
+                    success:function (obj) {
+                        if (obj.msg!=""){
+                            alert(obj.msg)
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
 <form action="" method="post">
@@ -40,7 +57,7 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="申请职位" onclick="this.form.action='recru/job_apply'">
+                <input type="submit" name="applyJobs" value="申请职位" <%--onclick="this.form.action='recru/job_apply'"--%>>
                 <input type="hidden" name="recru_id" value="${sessionScope.recru.recru_id}">
             </td>
         </tr>

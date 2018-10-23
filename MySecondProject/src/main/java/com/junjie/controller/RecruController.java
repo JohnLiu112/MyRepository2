@@ -8,13 +8,17 @@ import com.junjie.service.OfferService;
 import com.junjie.service.RecruService;
 import com.junjie.service.ResumeService;
 import com.junjie.util.DoPage;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 刘俊杰 on 2018/10/20.
@@ -93,15 +97,86 @@ public class RecruController {
         int currentPage=Integer.parseInt(request.getParameter("currentPage"));
         User u= (User) session.getAttribute("u");
         List<Offer> offers1=offerService.getOffersByUid(u.getU_id());
+        System.out.println(offers1);
         int totalPages= DoPage.getTotalPages(offers1.size());
+        System.out.println(totalPages);
         List<Offer> offers=offerService.getOfferByUidAndLimits(u.getU_id(),currentPage,PAGESIZE);
+        System.out.println(offers);
         List<Recru> recrus=recruService.getAllRecrus();
+        System.out.println(recrus);
         if (offers!=null) {
             session.setAttribute("offers",offers);
             session.setAttribute("recrus",recrus);
+            session.setAttribute("totalPages",totalPages);
             return "customer/checkJobApplied";
         }else {
             return "recru/checkRecru";
         }
+    }
+    @RequestMapping("/checkApplication")
+    @ResponseBody
+    public Map<String,Object> checkApplication(HttpServletRequest request, HttpSession session){
+        int recru_id=Integer.parseInt(request.getParameter("recru_id"));
+        User u= (User) session.getAttribute("u");
+        Map<String,Object> result=null;
+        System.out.println(offerService.getOfferByRecruIdAndUid(recru_id,u.getU_id()));
+        if (offerService.getOfferByRecruIdAndUid(recru_id,u.getU_id())==null){
+            result=new HashMap<String,Object>();
+            result.put("msg","");
+            return result;
+        }else {
+            result=new HashMap<String,Object>();
+            result.put("msg","该职位已申请");
+            return result;
+        }
+    }
+    @RequestMapping("/saveRecru")
+    public String saveRecru(HttpSession session,HttpServletRequest request){
+        Recru recru=new Recru(
+                request.getParameter("recru_job_name"),
+                request.getParameter("recru_firm_name"),
+                request.getParameter("recru_workplace"),
+                Integer.parseInt(request.getParameter("recru_salary")),
+                request.getParameter("recru_release_time"),
+                request.getParameter("recru_spec_wp"),
+                request.getParameter("recru_job_requirement"),
+                request.getParameter("recru_job_duties"),
+                request.getParameter("recru_dep_info"),
+                request.getParameter("recru_firm_intro"),
+                request.getParameter("recru_firm_bonus"),
+                Integer.parseInt(request.getParameter("recru_state")));
+        System.out.println(recru);
+        if (recruService.addRecru(recru)){
+            request.setAttribute("msg","添加成功，可继续添加");
+            return "administor/addRecru";
+        }else {
+            request.setAttribute("msg","添加失败，请重新尝试");
+            return "administor/addRecru";
+        }
+    }
+    @RequestMapping("/toAddRecru")
+    public String toAddRecru(){
+        return "administor/addRecru";
+    }
+    @RequestMapping("/toCheckRecrus")
+    public String toCheckRecrus(HttpSession session,HttpServletRequest request){
+        int currentPage=Integer.parseInt(request.getParameter("currentPage"));
+
+        List<Offer> offers1=offerService.getAllOffers();
+        int totalPages= DoPage.getTotalPages(offers1.size());
+
+        List<Offer> offers=offerService.getOfferByUidAndLimits(currentPage,PAGESIZE);
+        System.out.println(offers);
+        List<Recru> recrus=recruService.getAllRecrus();
+        System.out.println(recrus);
+        if (offers!=null) {
+            session.setAttribute("offers",offers);
+            session.setAttribute("recrus",recrus);
+            session.setAttribute("totalPages",totalPages);
+            return "customer/checkJobApplied";
+        }else {
+            return "recru/checkRecru";
+        }
+        return "administor/checkRecrus";
     }
 }

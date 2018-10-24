@@ -38,4 +38,9 @@
         SELECT * FROM T_ITVINFO WHERE
         ITVINFO_OFFER_ID=#{itvInfo_offer_id}
     </select>
+    <select id="getItvInfoByUidAndCheckStateAndByLimit" resultType="ItvInfo" parameterType="hashmap">
+        SELECT t_itv.* FROM
+        (SELECT rownum rn,t_i.* FROM T_ITVINFO t_i WHERE t_i.ITVINFO_U_ID=#{itvInfo_u_id} and t_i.ITVINFO_U_CHECK_STATE=#{itvInfo_u_check_state}) t_itv
+        where t_itv.rn between #{beginIndex} and #{pageSize}
+    </select>
 </mapper>

@@ -34,7 +34,7 @@
                 </td>
                 <form action="" method="post">
                     <td>
-                        <input type="submit"  value="查看职位信息信息" onclick="this.form.action='recru/checkRecruDetails'">
+                        <input type="submit"  value="查看职位信息" onclick="this.form.action='recru/checkRecruDetails'">
                         <input type="hidden" name="recru_id" value="${o.offer_recru_id}">
                     </td>
                 </form>

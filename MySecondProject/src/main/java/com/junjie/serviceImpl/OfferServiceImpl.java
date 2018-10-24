@@ -87,4 +87,22 @@ public class OfferServiceImpl implements OfferService{
         System.out.println(recru_id);
         return offerDao.getOfferByRecruIdAndUid(recru_id,uid);
     }
+
+    public List<Offer> getOfferBySendingStateAndLimits(int offer_sending_state, int beginIndex, int pageSize) {
+        if (offer_sending_state!=0||beginIndex<=0||pageSize<1){
+            return null;
+        }
+        HashMap<String,Object> hashMap=new HashMap<String, Object>();
+        hashMap.put("offer_sending_state",offer_sending_state);
+        hashMap.put("beginIndex",(beginIndex-1)*pageSize+1);
+        hashMap.put("pageSize",pageSize*beginIndex);
+        return offerDao.getOfferBySendingStateAndLimits(hashMap);
+    }
+
+    public List<Offer> getOffersBySendingState(Offer offer) {
+        if (offer==null){
+            return null;
+        }
+        return offerDao.getOffersBySendingState(offer);
+    }
 }

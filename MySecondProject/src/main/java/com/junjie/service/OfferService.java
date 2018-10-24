@@ -1,5 +1,6 @@
 package com.junjie.service;
 
+import com.junjie.model.ItvInfo;
 import com.junjie.model.Offer;
 
 import java.util.HashMap;
@@ -18,4 +19,6 @@ public interface OfferService {
     List<Offer> getOfferByUidAndLimits(int offer_u_id,int beginIndex,int pageSize);
     List<Offer> getOffersByUid(int uid);
     Offer getOfferByRecruIdAndUid(int recru_id,int uid);
+    List<Offer> getOfferBySendingStateAndLimits(int offer_sending_state, int beginIndex, int pageSize);
+    List<Offer> getOffersBySendingState(Offer offer);
 }

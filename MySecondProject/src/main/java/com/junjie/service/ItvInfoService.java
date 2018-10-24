@@ -14,7 +14,8 @@ public interface ItvInfoService {
     boolean updateItvInfo(ItvInfo itvInfo);
     ItvInfo getItvInfoById(ItvInfo itvInfo);
     ItvInfo getItvInfoByOfferId(ItvInfo itvInfo);
-    List<ItvInfo> getItvInfoByUidAndCheckState(int itvInfo_u_id,int checkState);
+    List<ItvInfo> getItvInfoByUidAndCheckState(int itvInfo_u_id,int itvInfo_u_check_state);
     List<ItvInfo> getItvInfoByUid(ItvInfo itvInfo);
     List<ItvInfo> getItvInfoByUidAndLimits(int itvInfo_u_id,int beginIndex,int pageSize);
+    List<ItvInfo> getItvInfoByUidAndCheckStateAndByLimit(int itvInfo_u_id,int itvInfo_u_check_state,int beginIndex,int pageSize);
 }

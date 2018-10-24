@@ -16,6 +16,8 @@ public interface OfferDao {
     List<Offer> getAllOffers();
     List<Offer> getOfferByUidAndLimits(HashMap<String,Object> hashMap);
     List<Offer> getOfferByLimits(HashMap<String,Object> hashMap);
+    List<Offer> getOfferBySendingStateAndLimits(HashMap<String,Object> hashMap);
     List<Offer> getOffersByUid(int uid);
+    List<Offer> getOffersBySendingState(Offer offer);
     Offer getOfferByRecruIdAndUid(int recru_id,int uid);
 }

@@ -105,7 +105,7 @@
             <td colspan="4"><span>${sessionScope.MyResume.rsm_social_prac}</span></td>
         </tr>
     </table>
-    <input type="submit" value="发offer" onclick="this.form.action='recru/sendOffer'">
+    <input type="submit" value="发offer" onclick="this.form.action='recru/toSetInfoAndTime'">
     <input type="submit" value="返回" onclick="this.form.action='user/adminMenu'">
 </form>
 <h3 style="color: red">${requestScope.msg}</h3>

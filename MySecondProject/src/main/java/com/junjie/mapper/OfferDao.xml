@@ -57,4 +57,12 @@
         (SELECT rownum rn,t_o.* FROM T_OFFER t_o ) t_off
         where t_off.rn between #{beginIndex} and #{pageSize}
     </select>
+    <select id="getOffersBySendingState" resultType="Offer" parameterType="Offer">
+        SELECT * FROM T_OFFER WHERE OFFER_SENDING_STATE=#{offer_sending_state}
+    </select>
+    <select id="getOfferBySendingStateAndLimits" resultType="Offer" parameterType="hashmap">
+        SELECT t_off.* FROM
+        (SELECT rownum rn,t_o.* FROM T_OFFER t_o WHERE OFFER_SENDING_STATE=#{offer_sending_state}) t_off
+        where t_off.rn between #{beginIndex} and #{pageSize}
+    </select>
 </mapper>

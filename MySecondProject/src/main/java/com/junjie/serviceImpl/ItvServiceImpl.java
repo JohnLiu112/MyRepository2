@@ -55,14 +55,16 @@ public class ItvServiceImpl implements ItvInfoService {
         return itvInfoDao.getItvInfoByOfferId(itvInfo);
     }
 
-    public List<ItvInfo> getItvInfoByUidAndCheckState(int itvInfo_u_id, int checkState) {
-        if (itvInfo_u_id<=0||checkState!=0||checkState!=1){
+    public List<ItvInfo> getItvInfoByUidAndCheckState(int itvInfo_u_id, int itvInfo_u_check_state) {
+        if (itvInfo_u_id<=0||(itvInfo_u_check_state!=0&&itvInfo_u_check_state!=1)){
             return null;
         }
         HashMap<String,Object> hashMap=new HashMap<String, Object>();
         hashMap.put("itvInfo_u_id",itvInfo_u_id);
-        hashMap.put("checkState",checkState);
-        return itvInfoDao.getItvInfoByUidAndLimits(hashMap);
+        hashMap.put("itvInfo_u_check_state",itvInfo_u_check_state);
+        System.out.println(itvInfoDao.getItvInfoByUidAndCheckState(hashMap));
+        return itvInfoDao.getItvInfoByUidAndCheckState(hashMap);
+
     }
 
     public List<ItvInfo> getItvInfoByUid(ItvInfo itvInfo) {
@@ -81,5 +83,17 @@ public class ItvServiceImpl implements ItvInfoService {
         hashMap.put("beginIndex",(beginIndex-1)*pageSize+1);
         hashMap.put("pageSize",pageSize*beginIndex);
         return itvInfoDao.getItvInfoByUidAndLimits(hashMap);
+    }
+
+    public List<ItvInfo> getItvInfoByUidAndCheckStateAndByLimit(int itvInfo_u_id, int itvInfo_u_check_state, int beginIndex, int pageSize) {
+        if (itvInfo_u_id<=0||beginIndex<=0||pageSize<1||(itvInfo_u_check_state!=1&&itvInfo_u_check_state!=0)){
+            return null;
+        }
+        HashMap<String,Object> hashMap=new HashMap<String, Object>();
+        hashMap.put("itvInfo_u_id",itvInfo_u_id);
+        hashMap.put("itvInfo_u_check_state",itvInfo_u_check_state);
+        hashMap.put("beginIndex",(beginIndex-1)*pageSize+1);
+        hashMap.put("pageSize",pageSize*beginIndex);
+        return itvInfoDao.getItvInfoByUidAndCheckStateAndByLimit(hashMap);
     }
 }

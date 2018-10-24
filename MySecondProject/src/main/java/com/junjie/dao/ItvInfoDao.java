@@ -22,4 +22,5 @@ public interface ItvInfoDao {
     List<ItvInfo> getItvInfoByUidAndCheckState(HashMap<String,Object> hashMap);
     List<ItvInfo> getItvInfoByUid(ItvInfo itvInfo);
     List<ItvInfo> getItvInfoByUidAndLimits(HashMap<String,Object> hashMap);
+    List<ItvInfo> getItvInfoByUidAndCheckStateAndByLimit(HashMap<String,Object> hashMap);
 }

@@ -106,9 +106,11 @@
     </table>
     <input type="submit" value="修改" onclick="this.form.action='resume/updateResume'">
 
-    <input type="submit" value="返回" onclick="this.form.action='user/checkUserMenu'">
-</form>
 
+</form>
+<form action="" method="post">
+    <input type="submit" value="返回" onclick="this.form.action='recru/checkRecru'">
+</form>
 <h3 style="color: red">
     ${requestScope.msg}
 </h3>

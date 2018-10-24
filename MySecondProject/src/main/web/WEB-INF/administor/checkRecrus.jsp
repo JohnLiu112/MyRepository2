@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘俊杰
@@ -25,9 +26,9 @@
 
                 <tr>
                     <td>
-                        <c:forEach items="${sessionScope.recrus}" var="recrus">
-                            <c:if test="${o.offer_recru_id==recrus.recru_id}">
-                                <c:out value="${recrus.recru_job_name}"></c:out>
+                        <c:forEach items="${sessionScope.recrus}" var="r">
+                            <c:if test="${r.recru_id==o.offer_recru_id}">
+                                <c:out value="${r.recru_job_name}"></c:out>
                             </c:if>
                         </c:forEach>
                     </td>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.junjie.dao.ItvInfoDao">
+    <insert id="addItvInfo" parameterType="ItvInfo" useGeneratedKeys="true">
+        INSERT INTO T_ITVINFO
+        VALUES
+        (ITVINFO_SEQ.nextval,#{itvInfo_offer_id},#{itvInfo_u_id},
+        #{itvInfo_recru_id},#{itvInfo_u_check_state},#{itvInfo_info},
+        #{itvInfo_itv_time})
+    </insert>
+    <update id="updateItvInfo" parameterType="ItvInfo">
+        UPDATE T_ITVINFO SET ITVINFO_OFFER_ID=#{itvInfo_offer_id},
+        itvInfo_u_id=#{itvInfo_u_id},itvInfo_recru_id=#{itvInfo_recru_id},
+        itvInfo_u_check_state=#{itvInfo_u_check_state},itvInfo_info=#{itvInfo_info},
+        itvInfo_itv_time=#{itvInfo_itv_time}
+         where itvInfo_id=#{itvInfo_id}
+    </update>
+    <delete id="deleteItvInfo" parameterType="ItvInfo">
+        DELETE FROM T_ITVINFO WHERE ITVINFO_ID=#{itvInfo_id}
+    </delete>
+    <select id="getItvInfoById" resultType="ItvInfo" parameterType="ItvInfo">
+        SELECT * FROM T_ITVINFO WHERE ITVINFO_ID=#{itvInfo_id}
+    </select>
+    <select id="getItvInfoByUidAndCheckState" resultType="ItvInfo" parameterType="hashmap">
+        SELECT * FROM T_ITVINFO WHERE
+        ITVINFO_U_ID=#{itvInfo_u_id} and itvInfo_u_check_state=#{itvInfo_u_check_state}
+    </select>
+    <select id="getItvInfoByUid" resultType="ItvInfo" parameterType="ItvInfo">
+        SELECT * FROM T_ITVINFO WHERE
+        ITVINFO_U_ID=#{itvInfo_u_id}
+    </select>
+    <select id="getItvInfoByUidAndLimits" resultType="ItvInfo" parameterType="hashmap">
+        SELECT t_itv.* FROM
+        (SELECT rownum rn,t_i.* FROM T_ITVINFO t_i WHERE t_i.ITVINFO_U_ID=#{itvInfo_u_id}) t_itv
+        where t_itv.rn between #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getItvInfoByOfferId" resultType="ItvInfo" parameterType="ItvInfo">
+        SELECT * FROM T_ITVINFO WHERE
+        ITVINFO_OFFER_ID=#{itvInfo_offer_id}
+    </select>
+</mapper>

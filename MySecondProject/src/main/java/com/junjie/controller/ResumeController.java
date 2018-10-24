@@ -66,7 +66,14 @@ public class ResumeController {
         }
     }
     @RequestMapping("/checkMyResume")
-    public String checkMyResume(){
+    public String checkMyResume(HttpSession session,HttpServletRequest request){
+        User u= (User) session.getAttribute("u");
+        Resume resume=new Resume();
+        resume.setRsm_u_id(u.getU_id());
+        Resume resume1=resumeService.getResumeByUid(resume);
+        if (resume1==null){
+            return "redirect:checkRecru?currentPage=1";
+        }
         return "customer/checkMyResume";
     }
 

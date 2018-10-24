@@ -33,8 +33,11 @@
                     </td>
                     <form action="" method="post">
                         <td>
-                            <input type="submit"  value="发送offer" onclick="this.form.action='recru/checkRecruDetails'">
-                            <input type="hidden" name="recru_id" value="${o.offer_recru_id}">
+                            <input type="submit"  value="查看申请人简历" onclick="this.form.action='recru/checkResumes'">
+                            <input type="hidden" name="offer_resume_id" value="${o.offer_resume_id}">
+                            <input type="hidden" name="offer_recru_id" value="${o.offer_recru_id}">
+                            <input type="hidden" name="offer_id" value="${o.offer_id}">
+                            <input type="hidden" name="offer_u_id" value="${o.offer_u_id}">
                         </td>
                     </form>
                 </tr>

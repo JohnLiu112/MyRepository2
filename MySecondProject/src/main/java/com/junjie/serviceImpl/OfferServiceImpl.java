@@ -52,6 +52,16 @@ public class OfferServiceImpl implements OfferService{
         return offerDao.getAllOffers();
     }
 
+    public List<Offer> getOfferByLimits(int beginIndex, int pageSize) {
+        if (beginIndex<=0||pageSize<1){
+            return null;
+        }
+        HashMap<String,Object> hashMap=new HashMap<String, Object>();
+        hashMap.put("beginIndex",(beginIndex-1)*pageSize+1);
+        hashMap.put("pageSize",pageSize*beginIndex);
+        return offerDao.getOfferByUidAndLimits(hashMap);
+    }
+
     public List<Offer> getOfferByUidAndLimits(int offer_u_id, int beginIndex, int pageSize) {
         if (offer_u_id<=0||beginIndex<=0||pageSize<1){
             return null;

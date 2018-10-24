@@ -1,9 +1,7 @@
 package com.junjie.controller;
 
-import com.junjie.model.Offer;
-import com.junjie.model.Recru;
-import com.junjie.model.Resume;
-import com.junjie.model.User;
+import com.junjie.model.*;
+import com.junjie.service.ItvInfoService;
 import com.junjie.service.OfferService;
 import com.junjie.service.RecruService;
 import com.junjie.service.ResumeService;
@@ -33,6 +31,9 @@ public class RecruController {
     private OfferService offerService;
     @Resource
     private ResumeService resumeService;
+    @Resource
+    private ItvInfoService itvInfoService;
+
     @RequestMapping("/checkRecru")
     public String checkRecru(HttpSession session, HttpServletRequest request) {
         List<Recru> recrus = recruService.getAllRecrus();
@@ -161,22 +162,58 @@ public class RecruController {
     @RequestMapping("/toCheckRecrus")
     public String toCheckRecrus(HttpSession session,HttpServletRequest request){
         int currentPage=Integer.parseInt(request.getParameter("currentPage"));
-
         List<Offer> offers1=offerService.getAllOffers();
         int totalPages= DoPage.getTotalPages(offers1.size());
-
-        List<Offer> offers=offerService.getOfferByUidAndLimits(currentPage,PAGESIZE);
-        System.out.println(offers);
+        List<Offer> offers=offerService.getOfferByLimits(currentPage,PAGESIZE);
         List<Recru> recrus=recruService.getAllRecrus();
         System.out.println(recrus);
         if (offers!=null) {
             session.setAttribute("offers",offers);
             session.setAttribute("recrus",recrus);
             session.setAttribute("totalPages",totalPages);
-            return "customer/checkJobApplied";
+            return "administor/checkRecrus";
         }else {
-            return "recru/checkRecru";
+            return "menu/AdminMenu";
         }
-        return "administor/checkRecrus";
+
+    }
+    //查看申请人简历
+    @RequestMapping("/checkResumes")
+    public String checkResumes(HttpServletRequest request,HttpSession session){
+        int offer_resume_id=Integer.parseInt(request.getParameter("offer_resume_id"));
+        int offer_recru_id=Integer.parseInt(request.getParameter("offer_recru_id"));
+        int offer_id=Integer.parseInt(request.getParameter("offer_id"));
+        int offer_u_id=Integer.parseInt(request.getParameter("offer_u_id"));
+        Offer offer=new Offer();
+        offer.setOffer_id(offer_id);
+        Offer offer1=offerService.getOfferById(offer);
+        offer1.setOffer_sending_state(1);
+        Resume resume=new Resume();
+        resume.setRsm_id(offer_resume_id);
+        Resume resume1=resumeService.getResumeById(resume);
+        if (resume1==null){
+            ItvInfo itvInfo=new ItvInfo(offer_id,offer_u_id,offer_recru_id,0,null,null);
+            if (itvInfoService.addItvInfo(itvInfo)){
+                return "redirect:toCheckRecrus?currentPage=1";
+            }
+            request.setAttribute("msg","没有添加游客推送消息");
+            session.setAttribute("MyResume",resume1);
+            return "administor/CheckResumeOfApplier";
+        }else {
+            if (offerService.updateOffer(offer1)){
+                session.setAttribute("MyResume",resume1);
+                return "administor/CheckResumeOfApplier";
+            }
+            return "redirect:user/adminMenu";
+        }
+
+    }
+    @RequestMapping("/sendOffer")
+    public String sendOffer(HttpServletRequest request){
+        int offer_id=Integer.parseInt(request.getParameter("offer_id"));
+        ItvInfo itvInfo1=new ItvInfo();
+        itvInfo1.setItvInfo_offer_id(offer_id);
+        ItvInfo itvInfo=itvInfoService.getItvInfoByOfferId(itvInfo1);
+
     }
 }

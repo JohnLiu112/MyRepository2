@@ -14,6 +14,7 @@ public interface OfferService {
     boolean updateOffer(Offer offer);
     Offer getOfferById(Offer offer);
     List<Offer> getAllOffers();
+    List<Offer> getOfferByLimits(int beginIndex, int pageSize);
     List<Offer> getOfferByUidAndLimits(int offer_u_id,int beginIndex,int pageSize);
     List<Offer> getOffersByUid(int uid);
     Offer getOfferByRecruIdAndUid(int recru_id,int uid);

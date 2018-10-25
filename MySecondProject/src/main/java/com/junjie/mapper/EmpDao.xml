@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.junjie.dao.EmpDao">
+    <insert id="addEmp" parameterType="Emp" useGeneratedKeys="true">
+        INSERT INTO T_EMP
+        VALUES
+        (EMP_SEQ.nextval,#{emp_name},#{emp_account},#{emp_pass},#{emp_gender},#{emp_age}
+        ,#{emp_hometown},#{emp_salary},#{emp_job_id},#{emp_dep_id},#{emp_on_off},#{emp_off_reason}
+        ,#{emp_phoneNum},#{emp_email})
+    </insert>
+    <update id="updateEmp" parameterType="Emp">
+        UPDATE T_EMP SET EMP_NAME=#{emp_name},emp_account=#{emp_account},emp_pass=#{emp_pass},
+        emp_gender=#{emp_gender},emp_hometown=#{emp_hometown},
+        emp_salary=#{emp_salary},emp_job_id=#{emp_job_id},emp_dep_id=#{emp_dep_id},
+        emp_on_off=#{emp_on_off},emp_off_reason=#{emp_off_reason}
+        ,emp_phoneNum=#{emp_phoneNum},emp_email=#{emp_email}
+    </update>
+    <delete id="deleteEmp"></delete>
+    <select id="getEmpByEmpId" resultType="com.junjie.model.Emp"></select>
+    <select id="getEmpByEmpAccountAndPass" resultType="com.junjie.model.Emp"></select>
+    <select id="getEmpByEmpAccount" resultType="com.junjie.model.Emp"></select>
+    <select id="getEmpByJobId" resultType="com.junjie.model.Emp"></select>
+    <select id="getEmpByJobIdAndLimit" resultType="com.junjie.model.Emp"></select>
+    <select id="getAllEmps" resultType="com.junjie.model.Emp"></select>
+    <select id="getAllEmpsByLimit" resultType="com.junjie.model.Emp"></select>
+</mapper>

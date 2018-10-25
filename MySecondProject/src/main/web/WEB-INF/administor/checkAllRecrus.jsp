@@ -23,7 +23,7 @@
             <c:forEach var="r" items="${sessionScope.recrus}">
                 <tr>
                     <td>
-                        <c:out value="${r.recru_job_name}"></c:out>
+                        职位名称：<c:out value="${r.recru_job_name}"></c:out>
                     </td>
                     <form action="" method="post">
                         <td>
@@ -33,12 +33,12 @@
                     </form>
                 </tr>
                 <tr>
-                    <td><c:out value="${r.recru_salary}"></c:out></td>
+                    <td>薪资：<c:out value="${r.recru_salary}"></c:out></td>
                     <td><c:out value="${r.recru_firm_name}"></c:out></td>
                 </tr>
                 <tr>
-                    <td><c:out value="${r.recru_firm_bonus}"></c:out></td>
-                    <td><c:out value="${r.recru_workplace}"></c:out></td>
+                    <td>福利：<c:out value="${r.recru_firm_bonus}"></c:out></td>
+                    <td>工作地点：<c:out value="${r.recru_workplace}"></c:out></td>
                 </tr>
             </c:forEach>
         </table>

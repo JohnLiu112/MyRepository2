@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.junjie.dao.DepDao">
+    <insert id="addDep" parameterType="Dep" useGeneratedKeys="true">
+        INSERT INTO T_DEP VALUES
+        (DEP_SEQ.nextval,#{dep_name},#{dep_create_time},
+        #{dep_emp_num})
+    </insert>
+    <update id="updateDep" parameterType="Dep" >
+        UPDATE T_DEP SET DEP_NAME=#{dep_name},
+        dep_create_time=#{dep_create_time},dep_emp_num=#{dep_emp_num}
+        where dep_id=dep_id
+    </update>
+    <delete id="deleteDep" parameterType="Dep">
+        DELETE FROM T_DEP WHERE DEP_ID=#{dep_id}
+    </delete>
+    <select id="getDepById" resultType="Dep" parameterType="Dep">
+        SELECT * FROM T_DEP WHERE DEP_ID=#{dep_id}
+    </select>
+    <select id="getDepByName" resultType="Dep" parameterType="Dep">
+        SELECT * FROM T_DEP WHERE DEP_NAME=#{dep_name}
+    </select>
+    <select id="getAllDep" resultType="Dep">
+        SELECT * FROM T_DEP
+    </select>
+    <select id="getAllDepByLimit" resultType="Dep" parameterType="hashmap">
+        SELECT t_de.* FROM (SELECT rownum rn,t_d.* FROM T_DEP t_d) t_de
+        WHERE t_de.rn BETWEEN #{beginIndex} and #{pageSize}
+    </select>
+</mapper>

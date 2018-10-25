@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.junjie.dao.JobDao">
+    <insert id="addJob" parameterType="Job" useGeneratedKeys="true">
+        INSERT into T_JOB VALUES
+        (JOB_SEQ.nextval,#{job_name},#{job_dep_id})
+    </insert>
+    <update id="updateJob" parameterType="Job">
+        UPDATE T_JOB SET
+        JOB_NAME=#{job_name},job_dep_id=#{job_dep_id}
+        where job_id=#{job_id}
+    </update>
+    <delete id="deleteJob" parameterType="Job">
+        DELETE FROM T_JOB WHERE JOB_ID=#{job_id}
+    </delete>
+    <select id="getJobById" resultType="Job" parameterType="Job">
+        SELECT * FROM T_JOB WHERE JOB_ID=#{job_id}
+    </select>
+    <select id="getJobByDepId" resultType="Job" parameterType="Job">
+        SELECT * FROM T_JOB WHERE JOB_DEP_ID=#{job_dep_id}
+    </select>
+    <select id="getAllJobs" resultType="Job">
+        SELECT * FROM T_JOB
+    </select>
+    <select id="getJobByDepIdAndLimit" resultType="Job" parameterType="hashmap">
+        SELECT t_jb.* FROM
+        (SELECT rownum rn,t_j.* FROM T_JOB t_j WHERE t_j.JOB_DEP_ID=#{job_dep_id}) t_jb
+        WHERE t_jb.rn BETWEEN #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getJobByLimit" resultType="Job">
+         SELECT t_jb.* FROM
+        (SELECT rownum rn,t_j.* FROM T_JOB t_j) t_jb
+        WHERE t_jb.rn BETWEEN #{beginIndex} and #{pageSize}
+    </select>
+</mapper>

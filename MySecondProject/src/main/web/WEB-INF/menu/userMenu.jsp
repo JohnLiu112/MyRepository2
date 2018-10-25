@@ -15,6 +15,7 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>Title</title>
+
     <style>
         #bd {
             background-color: ghostwhite;

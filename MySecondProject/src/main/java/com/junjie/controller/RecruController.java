@@ -326,4 +326,17 @@ public class RecruController {
             return "redirect:/user/adminMenu";
         }
     }
+    @RequestMapping("/checkRecruDetails")
+    public String checkRecruDetails(HttpServletRequest request,HttpSession session){
+        int recru_id = Integer.parseInt(request.getParameter("recru_id"));
+        Recru recru = new Recru();
+        recru.setRecru_id(recru_id);
+        Recru recru1 = recruService.getRecruById(recru);
+        if (recru1 != null) {
+            session.setAttribute("recru", recru1);
+            return "administor/checkRecruDetails";
+        } else {
+            return "recru/checkRecru";
+        }
+    }
 }

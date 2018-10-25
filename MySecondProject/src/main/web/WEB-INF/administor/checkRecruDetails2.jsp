@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘俊杰
@@ -27,8 +28,8 @@
             </td>
         </tr>
         <tr>
-            <td><c:out value="${sessionScope.recru.recru_firm_bonus}"></c:out></td>
-            <td><c:out value="${sessionScope.recru.recru_spec_wp}"></c:out></td>
+            <td>福利：<c:out value="${sessionScope.recru.recru_firm_bonus}"></c:out></td>
+            <td>具体工作地点：<c:out value="${sessionScope.recru.recru_spec_wp}"></c:out></td>
         </tr>
         <tr>
 
@@ -39,16 +40,16 @@
         <tr>
             <td colspan="2">
                 <p>
-                    <span><c:out value="${sessionScope.recru.recru_job_requirement}"></c:out></span></br>
-                    <span><c:out value="${sessionScope.recru.recru_job_duties}"></c:out></span>
+                    <span>工作要求：<c:out value="${sessionScope.recru.recru_job_requirement}"></c:out></span></br>
+                    <span>工作任务：<c:out value="${sessionScope.recru.recru_job_duties}"></c:out></span>
                 </p>
             </td>
         </tr>
         <tr>
             <td colspan="2">
                 <p>
-                    <span><c:out value="${sessionScope.recru.recru_dep_info}"></c:out></span></br>
-                    <span><c:out value="${sessionScope.recru.recru_firm_intro}"></c:out></span>
+                    <span>部门信息：<c:out value="${sessionScope.recru.recru_dep_info}"></c:out></span></br>
+                    <span>公司简介：<c:out value="${sessionScope.recru.recru_firm_intro}"></c:out></span>
                 </p>
             </td>
         </tr>

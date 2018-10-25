@@ -30,7 +30,7 @@
     <select id="getRecruByState" resultType="Recru" parameterType="Recru">
         SELECT * FROM T_RECRU WHERE RECRU_STATE=#{recru_state}
     </select>
-    <select id="getAllRecrus" resultType="Recru">
+    <select id="getAllRecrus" resultType="Recru" >
         SELECT * FROM T_RECRU
     </select>
     <select id="getRecrusByStateAndLimits" resultType="Recru" parameterType="hashmap">

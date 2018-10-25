@@ -27,7 +27,9 @@
                     </td>
                     <form action="" method="post">
                         <td>
-                            <input type="submit" value="查看" onclick="this.form.action='recru/checkRecruDetails'">
+                            <input type="submit" value="查看" onclick="this.form.action='recru/checkRecruDetails1'">
+                            <input type="submit" value="修改" onclick="this.form.action='recru/toUpdateRecruDetails1'">
+                            <input type="submit" value="删除" onclick="this.form.action='recru/deleteRecruDetails1'">
                             <input type="hidden" name="recru_id" value="${r.recru_id}">
                         </td>
                     </form>
@@ -49,6 +51,9 @@
             </c:forEach>
         </c:if>
     </div>
+</form>
+<form action="" method="post">
+    <input type="submit" value="返回" onclick="this.form.action='user/adminMenu'">
 </form>
 </body>
 </html>

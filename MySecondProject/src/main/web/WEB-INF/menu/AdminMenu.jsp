@@ -40,6 +40,7 @@
     <li class="lc1"><a href="recru/toAddRecru" class="ac1">添加招聘信息</a></li>
     <li class="lc1"><a href="recru/toCheckAllRecrus?currentPage=1" class="ac1">查看招聘信息</a></li>
     <li class="lc1"><a href="recru/toCheckRecrus?currentPage=1" class="ac1">查看已收求职信息</a></li>
+    <li class="lc1"><a href="admin/toHRmanage" class="ac1">人事管理</a></li>
 </ul>
 <h3 style="color: red">${requestScope.error}</h3>
 </body>

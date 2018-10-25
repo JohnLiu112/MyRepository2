@@ -15,12 +15,32 @@
         emp_on_off=#{emp_on_off},emp_off_reason=#{emp_off_reason}
         ,emp_phoneNum=#{emp_phoneNum},emp_email=#{emp_email}
     </update>
-    <delete id="deleteEmp"></delete>
-    <select id="getEmpByEmpId" resultType="com.junjie.model.Emp"></select>
-    <select id="getEmpByEmpAccountAndPass" resultType="com.junjie.model.Emp"></select>
-    <select id="getEmpByEmpAccount" resultType="com.junjie.model.Emp"></select>
-    <select id="getEmpByJobId" resultType="com.junjie.model.Emp"></select>
-    <select id="getEmpByJobIdAndLimit" resultType="com.junjie.model.Emp"></select>
-    <select id="getAllEmps" resultType="com.junjie.model.Emp"></select>
-    <select id="getAllEmpsByLimit" resultType="com.junjie.model.Emp"></select>
+    <delete id="deleteEmp" parameterType="Emp">
+        DELETE FROM T_EMP WHERE EMP_ID=#{emp_id}
+    </delete>
+    <select id="getEmpByEmpId" resultType="Emp" parameterType="Emp">
+        SELECT * FROM T_EMP WHERE EMP_ID=#{emp_id}
+    </select>
+    <select id="getEmpByEmpAccountAndPass" resultType="Emp" parameterType="Emp">
+        SELECT * FROM T_EMP WHERE EMP_ACCOUNT=#{emp_account} and emp_pass=#{emp_pass}
+    </select>
+    <select id="getEmpByEmpAccount" resultType="Emp" parameterType="Emp">
+        SELECT * FROM T_EMP WHERE EMP_ACCOUNT=#{emp_account}
+    </select>
+    <select id="getEmpByJobId" resultType="Emp" parameterType="Emp">
+        SELECT * FROM T_EMP WHERE EMP_JOB_ID=#{emp_job_id}
+    </select>
+    <select id="getEmpByJobIdAndLimit" resultType="Emp" parameterType="hashmap">
+        SELECT t_em.* FROM
+        (SELECT rownum rn,t_e.* FROM T_EMP t_e WHERE t_e.EMP_JOB_ID=#{emp_job_id}) t_em
+        where t_em.rn between #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getAllEmps" resultType="Emp">
+        SELECT * FROM T_EMP
+    </select>
+    <select id="getAllEmpsByLimit" resultType="Emp" parameterType="hashmap">
+        SELECT t_em.* FROM
+        (SELECT rownum rn,t_e.* FROM T_EMP t_e) t_em
+        where t_em.rn between #{beginIndex} and #{pageSize}
+    </select>
 </mapper>

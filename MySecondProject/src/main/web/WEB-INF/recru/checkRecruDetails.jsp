@@ -57,7 +57,7 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" name="applyJobs" value="申请职位" <%--onclick="this.form.action='recru/job_apply'"--%>>
+                <input type="submit" name="applyJobs" value="申请职位" onclick="this.form.action='recru/job_apply'">
                 <input type="hidden" name="recru_id" value="${sessionScope.recru.recru_id}">
             </td>
         </tr>

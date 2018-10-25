@@ -10,7 +10,7 @@ public class Recru implements Serializable {
     private String recru_job_name;
     private String recru_firm_name;
     private String recru_workplace;
-    private int recru_salary;
+    private String recru_salary;
     private String recru_release_time;
     private String recru_spec_wp;
     private String recru_job_requirement;
@@ -43,7 +43,7 @@ public class Recru implements Serializable {
     public Recru() {
     }
 
-    public Recru(String recru_job_name, String recru_firm_name, String recru_workplace, int recru_salary, String recru_release_time, String recru_spec_wp, String recru_job_requirement, String recru_job_duties, String recru_dep_info, String recru_firm_intro, String recru_firm_bonus, int recru_state) {
+    public Recru(String recru_job_name, String recru_firm_name, String recru_workplace, String recru_salary, String recru_release_time, String recru_spec_wp, String recru_job_requirement, String recru_job_duties, String recru_dep_info, String recru_firm_intro, String recru_firm_bonus, int recru_state) {
         this.recru_job_name = recru_job_name;
         this.recru_firm_name = recru_firm_name;
         this.recru_workplace = recru_workplace;
@@ -90,11 +90,11 @@ public class Recru implements Serializable {
         this.recru_workplace = recru_workplace;
     }
 
-    public int getRecru_salary() {
+    public String getRecru_salary() {
         return recru_salary;
     }
 
-    public void setRecru_salary(int recru_salary) {
+    public void setRecru_salary(String recru_salary) {
         this.recru_salary = recru_salary;
     }
 

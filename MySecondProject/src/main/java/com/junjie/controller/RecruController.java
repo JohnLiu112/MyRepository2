@@ -148,7 +148,7 @@ public class RecruController {
                 request.getParameter("recru_job_name"),
                 request.getParameter("recru_firm_name"),
                 request.getParameter("recru_workplace"),
-                Integer.parseInt(request.getParameter("recru_salary")),
+                request.getParameter("recru_salary"),
                 request.getParameter("recru_release_time"),
                 request.getParameter("recru_spec_wp"),
                 request.getParameter("recru_job_requirement"),
@@ -326,7 +326,7 @@ public class RecruController {
             return "redirect:/user/adminMenu";
         }
     }
-    @RequestMapping("/checkRecruDetails")
+    @RequestMapping("/checkRecruDetails1")
     public String checkRecruDetails(HttpServletRequest request,HttpSession session){
         int recru_id = Integer.parseInt(request.getParameter("recru_id"));
         Recru recru = new Recru();
@@ -334,9 +334,60 @@ public class RecruController {
         Recru recru1 = recruService.getRecruById(recru);
         if (recru1 != null) {
             session.setAttribute("recru", recru1);
-            return "administor/checkRecruDetails";
+            return "administor/checkRecruDetails2";
         } else {
             return "recru/checkRecru";
         }
     }
+    @RequestMapping("/toUpdateRecruDetails1")
+    public String toUpdateRecruDetails1(HttpServletRequest request,HttpSession session){
+        int recru_id = Integer.parseInt(request.getParameter("recru_id"));
+        Recru recru = new Recru();
+        recru.setRecru_id(recru_id);
+        Recru recru1 = recruService.getRecruById(recru);
+        if (recru1 != null) {
+            session.setAttribute("recru", recru1);
+            return "administor/updateRecruDetails2";
+        } else {
+            return "recru/checkRecru";
+        }
+    }
+    @RequestMapping("/updateRecruDetails1")
+    public String updateRecruDetails1(HttpServletRequest request,HttpSession session){
+        System.out.println(Integer.parseInt(request.getParameter("recru_state")));
+        Recru recru = new Recru(
+                request.getParameter("recru_job_name"),
+                request.getParameter("recru_firm_name"),
+                request.getParameter("recru_workplace"),
+                request.getParameter("recru_salary"),
+                request.getParameter("recru_release_time"),
+                request.getParameter("recru_spec_wp"),
+                request.getParameter("recru_job_requirement"),
+                request.getParameter("recru_job_duties"),
+                request.getParameter("recru_dep_info"),
+                request.getParameter("recru_firm_intro"),
+                request.getParameter("recru_firm_bonus"),
+                Integer.parseInt(request.getParameter("recru_state")));
+        recru.setRecru_id(Integer.parseInt(request.getParameter("recru_id")));
+        int recru_id=Integer.parseInt(request.getParameter("recru_id"));
+        if (recruService.updateRecru(recru)){
+
+            return "redirect:toUpdateRecruDetails1?recru_id="+recru_id;
+        }else {
+            return "redirect:toUpdateRecruDetails1";
+        }
+    }
+
+    @RequestMapping("/deleteRecruDetails1")
+    public String deleteRecruDetails1(HttpSession session,HttpServletRequest request){
+        int recru_id = Integer.parseInt(request.getParameter("recru_id"));
+        Recru recru = new Recru();
+        recru.setRecru_id(recru_id);
+        if (recruService.deleteRecru(recru)){
+            return "redirect:toCheckAllRecrus?currentPage=1";
+        }else {
+            return "redirect:toCheckAllRecrus?currentPage=1";
+        }
+    }
+
 }

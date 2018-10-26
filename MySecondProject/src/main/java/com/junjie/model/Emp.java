@@ -42,6 +42,9 @@ public class Emp implements Serializable {
     }
 
     public Emp() {
+    }
+
+    public Emp(String rsm_name, String rsm_email, int rsm_phone, String rsm_gender, int rsm_age, String rsm_hometown, int emp_salary, int job_id, int dep_id, int emp_on_off, Object emp_off_reason, int rsmPhone, String rsmEmail) {
 
     }
 

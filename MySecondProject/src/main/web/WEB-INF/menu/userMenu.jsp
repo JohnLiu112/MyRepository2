@@ -45,17 +45,21 @@
 
 
 <c:if test="${sessionScope.itvInfos.size()!=0}">
-<a href="recru/checkItvInfo1?currentPage=1"><c:out value="您有未查看的消息"></c:out></a>
+<a href="recru/checkItvInfo1?currentPage=1"><c:out value="您有未查看面试的消息"></c:out></a>
 </c:if>
 <c:if test="${sessionScope.itvInfos.size()==0}">
-    <a href="recru/checkItvInfo2?currentPage=1"><c:out value="查看所有消息"></c:out></a>
+    <a href="recru/checkItvInfo2?currentPage=1"><c:out value="查看所有面试消息"></c:out></a>
+</c:if>
+
+<c:if test="${sessionScope.itvInfos.size()==0}">
+    <a href="recru/checkOfferReceived?currentPage=1"><c:out value="查看offer消息"></c:out></a>
 </c:if>
 
 <form action="" method="post">
     <div>
         <ul id="u1">
-            <li><input type="submit" value="编辑个人简历" onclick="this.form.action='resume/toAddResume'"></li>
-            <li><input type="submit" value="更新个人简历" onclick="this.form.action='resume/toUpdateResume'"></li>
+            <li><input type="submit" value="编辑个人简历" onclick="this.form.action='jump/toAddResume'"></li>
+            <li><input type="submit" value="更新个人简历" onclick="this.form.action='jump/toUpdateResume'"></li>
             <li><input type="submit" value="我的申请" onclick="this.form.action='recru/toJobApplied?currentPage=1'"></li>
         </ul>
     </div>

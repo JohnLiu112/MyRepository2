@@ -42,17 +42,21 @@ public class DepServiceImpl implements DepService {
         return true;
     }
 
-    public Dep getDepById(Dep dep) {
-        if (dep==null){
+    public Dep getDepById(int dep_id) {
+        if (dep_id<1){
             return null;
         }
+        Dep dep=new Dep();
+        dep.setDep_id(dep_id);
         return depDao.getDepById(dep);
     }
 
-    public Dep getDepByName(Dep dep) {
-        if (dep==null){
+    public Dep getDepByName(String dep_name) {
+        if (dep_name==null){
             return null;
         }
+        Dep dep=new Dep();
+        dep.setDep_name(dep_name);
         return depDao.getDepByName(dep);
     }
 

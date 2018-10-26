@@ -21,20 +21,7 @@ public class ResumeController {
     @Resource
     private ResumeService resumeService;
 
-    @RequestMapping("/toAddResume")
-    public String toAddResume(){
-        return "customer/addResume";
-    }
-    @RequestMapping("/toUpdateResume")
-    public String toUpdateResume(HttpSession session, HttpServletRequest request){
-        User u= (User) session.getAttribute("u");
-        Resume resume=new Resume();
-        resume.setRsm_u_id(u.getU_id());
-        Resume resume1=resumeService.getResumeByUid(resume);
-        session.setAttribute("MyResume",resume1);
-        return "customer/updateResume";
-    }
-    @RequestMapping("/checkEnterClick")
+    /*@RequestMapping("/checkEnterClick")
     public void checkEnterClick(HttpServletRequest request,HttpServletResponse response) throws IOException {
         int code=Integer.parseInt(request.getParameter("code"));
         if (code==13){
@@ -42,7 +29,8 @@ public class ResumeController {
         }else {
             response.getWriter().write(0);
         }
-    }
+    }*/
+    //新增个人简历
     @RequestMapping("/saveResume")
     public String saveResume(HttpSession session, HttpServletRequest request){
         User u= (User) session.getAttribute("u");
@@ -65,6 +53,7 @@ public class ResumeController {
             return "customer/addResume";
         }
     }
+    //查看个人简历
     @RequestMapping("/checkMyResume")
     public String checkMyResume(HttpSession session,HttpServletRequest request){
         User u= (User) session.getAttribute("u");
@@ -76,7 +65,7 @@ public class ResumeController {
         }
         return "customer/checkMyResume";
     }
-
+    //更新个人简历
     @RequestMapping("/updateResume")
     public String updateResume(HttpSession session, HttpServletRequest request){
         User u= (User) session.getAttribute("u");
@@ -99,7 +88,7 @@ public class ResumeController {
             return "customer/updateResume";
         }
     }
-
+    //删除个人简历
     @RequestMapping("/deleteResume")
     public String deleteResume(HttpSession session, HttpServletRequest request){
         User u= (User) session.getAttribute("u");

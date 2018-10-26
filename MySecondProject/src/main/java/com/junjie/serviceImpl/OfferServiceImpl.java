@@ -41,10 +41,12 @@ public class OfferServiceImpl implements OfferService{
         return true;
     }
 
-    public Offer getOfferById(Offer offer) {
-        if (offer==null){
+    public Offer getOfferById(int offer_id) {
+        if (offer_id<1){
             return null;
         }
+        Offer offer=new Offer();
+        offer.setOffer_id(offer_id);
         return offerDao.getOfferById(offer);
     }
 
@@ -73,19 +75,19 @@ public class OfferServiceImpl implements OfferService{
         return offerDao.getOfferByUidAndLimits(hashMap);
     }
 
-    public List<Offer> getOffersByUid(int uid) {
-        if (uid<=0){
+    public List<Offer> getOffersByUid(int offer_u_id) {
+        if (offer_u_id<=0){
             return null;
         }
-        return offerDao.getOffersByUid(uid);
+        return offerDao.getOffersByUid(offer_u_id);
     }
 
-    public Offer getOfferByRecruIdAndUid(int recru_id,int uid) {
-        if (recru_id<1||uid<1){
+    public Offer getOfferByRecruIdAndUid(int offer_recru_id,int offer_u_id) {
+        if (offer_recru_id<1||offer_u_id<1){
             return null;
         }
-        System.out.println(recru_id);
-        return offerDao.getOfferByRecruIdAndUid(recru_id,uid);
+        System.out.println(offer_recru_id);
+        return offerDao.getOfferByRecruIdAndUid(offer_recru_id,offer_u_id);
     }
 
     public List<Offer> getOfferBySendingStateAndLimits(int offer_sending_state, int beginIndex, int pageSize) {
@@ -99,10 +101,32 @@ public class OfferServiceImpl implements OfferService{
         return offerDao.getOfferBySendingStateAndLimits(hashMap);
     }
 
-    public List<Offer> getOffersBySendingState(Offer offer) {
-        if (offer==null){
+    public List<Offer> getOffersBySendingState(int offer_sending_state) {
+        if (offer_sending_state<0||offer_sending_state>1){
             return null;
         }
+        Offer offer=new Offer();
+        offer.setOffer_emp_state(offer_sending_state);
         return offerDao.getOffersBySendingState(offer);
+    }
+
+    public List<Offer> getOffersByEmpState(int offer_emp_state) {
+        if (offer_emp_state<0||offer_emp_state>2){
+            return null;
+        }
+        Offer offer=new Offer();
+        offer.setOffer_emp_state(offer_emp_state);
+        return offerDao.getOffersByEmpState(offer);
+    }
+
+    public List<Offer> getOfferByEmpStateAndLimits(int offer_emp_state, int beginIndex, int pageSize) {
+        if (offer_emp_state!=0||beginIndex<=0||pageSize<1){
+            return null;
+        }
+        HashMap<String,Object> hashMap=new HashMap<String, Object>();
+        hashMap.put("offer_emp_state",offer_emp_state);
+        hashMap.put("beginIndex",(beginIndex-1)*pageSize+1);
+        hashMap.put("pageSize",pageSize*beginIndex);
+        return offerDao.getOfferBySendingStateAndLimits(hashMap);
     }
 }

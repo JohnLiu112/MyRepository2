@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.junjie.dao.OfferEmailDao">
-    <insert id="addOfferEmail"></insert>
-    <update id="updateOfferEmail"></update>
-    <delete id="deleteOfferEmail"></delete>
-    <select id="getOfferEmailById" resultType="com.junjie.model.OfferEmail"></select>
-    <select id="getAllOfferEmails" resultType="com.junjie.model.OfferEmail"></select>
+    <insert id="addOfferEmail" parameterType="OfferEmail" useGeneratedKeys="true">
+        INSERT INTO T_OFFEREMAIL
+        VALUES (OFFEREMAIL_SEQ.nextval,#{oe_info},#{oe_emp_name},#{oe_emp_pass})
+        #{oe_u_id}
+    </insert>
+    <update id="updateOfferEmail" parameterType="OfferEmail">
+        UPDATE T_OFFEREMAIL SET OE_INFO=#{oe_info},oe_emp_name=#{oe_emp_name},oe_emp_pass=#{oe_emp_pass}
+        oe_u_id=#{oe_u_id}
+        where oe_id=#{oe_id}
+    </update>
+    <delete id="deleteOfferEmail" parameterType="OfferEmail">
+        DELETE FROM T_OFFEREMAIL WHERE OE_ID=#{oe_id}
+    </delete>
+    <select id="getOfferEmailById" resultType="OfferEmail" parameterType="OfferEmail">
+        SELECT * FROM T_OFFEREMAIL WHERE OE_ID=#{oe_id}
+    </select>
+    <select id="getAllOfferEmails" resultType="OfferEmail">
+        SELECT * FROM T_OFFEREMAIL
+    </select>
+    <select id="getAllOfferEmailsByLimit" resultType="com.junjie.model.OfferEmail" parameterType="hashmap">
+        SELECT t_oe.* FROM (SELECT rownum rn,t_of.* FROM T_OFFEREMAIL t_of) t_oe
+        WHERE t_oe.rn BETWEEN #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getAllOfferEmailsByUid" resultType="OfferEmail" parameterType="OfferEmail">
+        SELECT * FROM T_OFFEREMAIL WHERE OE_U_ID=#{oe_u_id}
+    </select>
+    <select id="getAllOfferEmailsByUidAndByLimit" resultType="OfferEmail" parameterType="hashmap">
+        SELECT t_oe.* FROM (SELECT rownum rn,t_of.* FROM T_OFFEREMAIL t_of WHERE t_of.OE_U_ID=#{oe_u_id}) t_oe
+        WHERE t_oe.rn BETWEEN #{beginIndex} and #{pageSize}
+    </select>
 </mapper>

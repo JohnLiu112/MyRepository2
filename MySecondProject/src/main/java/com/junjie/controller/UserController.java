@@ -21,29 +21,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @RequestMapping("/userMenu1")
-    public String userMenu1(){
-        return "menu/menu";
-    }
-    @RequestMapping("/userLogin")
-    public String userLogin(){
-        return "menu/login";
-    }
-    @RequestMapping("/userRegister")
-    public String userRegister(){
-        return "menu/register";
-    }
-
-    @RequestMapping("/checkUserMenu")
-    public String checkUserMenu(){
-        return "menu/userMenu";
-    }
-
-    @RequestMapping("/rechargeView")
-    public String rechargeView(){
-        return "recharge/Recharge";
-    }
-
+    //用户登录
     @RequestMapping("/loginServlet")
     public String login( HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
         User user=new User(request.getParameter("uname"),request.getParameter("upass"));
@@ -63,6 +41,7 @@ public class UserController {
             return "menu/login";
         }
     }
+    //自动登录检查cookie
     @RequestMapping("/check")
     public String checkAutoLogin(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response){
         User user= (User) session.getAttribute("u");
@@ -81,6 +60,7 @@ public class UserController {
         model.addAttribute("msg","登录失败");
         return "menu/login";
     }
+    //跳转到注册界面
     @RequestMapping("/register")
     public String register(Model model, HttpServletRequest request){
         String pass2=request.getParameter("userpass2");
@@ -89,8 +69,6 @@ public class UserController {
             if (userService.queryUserByName(user.getU_name())!=null){
                 model.addAttribute("msg","用户名已存在");
                 return "menu/register";
-
-
             }else {
                 if(userService.register(user)){
                     model.addAttribute("msg","注册成功");
@@ -105,22 +83,13 @@ public class UserController {
             return "menu/register";
         }
     }
-
+    //跳转到管理员登录界面
     @RequestMapping("/adminLogin")
     public String adminLogin(){
         return "menu/AdminLogin";
     }
 
-    @RequestMapping("/adminMenu")
-    public String adminMenu(){
-        return "menu/AdminMenu";
-    }
-
-    @RequestMapping("/backToSuperMenu")
-    public String backToSuperMenu(){
-        return "../../SuperMenu";
-    }
-
+    //管理员登录
     @RequestMapping("/adminLogin1")
     public String adminLogin1(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
         String adminName=request.getParameter("adminname");
@@ -141,6 +110,7 @@ public class UserController {
             return "menu/AdminLogin";
         }
     }
+    //管理员自动登录检查
     @RequestMapping("/checkAdminLogin")
     public String checkAdminLogin(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response){
         String adminName= (String) session.getAttribute("adminName");

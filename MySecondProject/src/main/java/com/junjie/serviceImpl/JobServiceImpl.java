@@ -41,17 +41,21 @@ public class JobServiceImpl implements JobService {
         return true;
     }
 
-    public Job getJobById(Job job) {
-        if (job==null){
+    public Job getJobById(int job_id) {
+        if (job_id<1){
             return null;
         }
+        Job job=new Job();
+        job.setJob_id(job_id);
         return jobDao.getJobById(job);
     }
 
-    public List<Job> getJobByDepId(Job job) {
-        if (job==null){
+    public List<Job> getJobByDepId(int job_dep_id) {
+        if (job_dep_id<1){
             return null;
         }
+        Job job=new Job();
+        job.setJob_dep_id(job_dep_id);
         return jobDao.getJobByDepId(job);
     }
 

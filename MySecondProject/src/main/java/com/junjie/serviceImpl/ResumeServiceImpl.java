@@ -41,17 +41,21 @@ public class ResumeServiceImpl implements ResumeService {
         return true;
     }
 
-    public Resume getResumeById(Resume resume) {
-        if (resume==null){
+    public Resume getResumeById(int rsm_id) {
+        if (rsm_id<1){
             return null;
         }
+        Resume resume=new Resume();
+        resume.setRsm_id(rsm_id);
         return resumeDao.getResumeById(resume);
     }
 
-    public Resume getResumeByUid(Resume resume) {
-        if (resume==null){
+    public Resume getResumeByUid(int rsm_u_id) {
+        if (rsm_u_id<1){
             return null;
         }
+        Resume resume=new Resume();
+        resume.setRsm_u_id(rsm_u_id);
         return resumeDao.getResumeByUid(resume);
     }
 

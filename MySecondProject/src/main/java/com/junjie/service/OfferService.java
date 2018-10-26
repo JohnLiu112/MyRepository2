@@ -13,12 +13,14 @@ public interface OfferService {
     boolean addOffer(Offer offer);
     boolean deleteOffer(Offer offer);
     boolean updateOffer(Offer offer);
-    Offer getOfferById(Offer offer);
+    Offer getOfferById(int offer_id);
     List<Offer> getAllOffers();
     List<Offer> getOfferByLimits(int beginIndex, int pageSize);
     List<Offer> getOfferByUidAndLimits(int offer_u_id,int beginIndex,int pageSize);
-    List<Offer> getOffersByUid(int uid);
-    Offer getOfferByRecruIdAndUid(int recru_id,int uid);
+    List<Offer> getOffersByUid(int offer_u_id);
+    Offer getOfferByRecruIdAndUid(int offer_recru_id,int offer_u_id);
     List<Offer> getOfferBySendingStateAndLimits(int offer_sending_state, int beginIndex, int pageSize);
-    List<Offer> getOffersBySendingState(Offer offer);
+    List<Offer> getOffersBySendingState(int offer_sending_state);
+    List<Offer> getOffersByEmpState(int offer_emp_state);
+    List<Offer> getOfferByEmpStateAndLimits(int offer_emp_state, int beginIndex, int pageSize);
 }

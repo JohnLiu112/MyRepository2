@@ -10,6 +10,7 @@ public class OfferEmail implements Serializable {
     private String oe_info;
     private String oe_emp_name;
     private String oe_emp_pass;
+    private int oe_u_id;
 
     @Override
     public String toString() {
@@ -18,6 +19,7 @@ public class OfferEmail implements Serializable {
                 ", oe_info='" + oe_info + '\'' +
                 ", oe_emp_name='" + oe_emp_name + '\'' +
                 ", oe_emp_pass='" + oe_emp_pass + '\'' +
+                ", oe_u_id=" + oe_u_id +
                 '}';
     }
 
@@ -28,6 +30,21 @@ public class OfferEmail implements Serializable {
         this.oe_info = oe_info;
         this.oe_emp_name = oe_emp_name;
         this.oe_emp_pass = oe_emp_pass;
+    }
+
+    public OfferEmail(String oe_info, String oe_emp_name, String oe_emp_pass, int oe_u_id) {
+        this.oe_info = oe_info;
+        this.oe_emp_name = oe_emp_name;
+        this.oe_emp_pass = oe_emp_pass;
+        this.oe_u_id = oe_u_id;
+    }
+
+    public int getOe_u_id() {
+        return oe_u_id;
+    }
+
+    public void setOe_u_id(int oe_u_id) {
+        this.oe_u_id = oe_u_id;
     }
 
     public int getOe_id() {

@@ -12,10 +12,10 @@ public interface EmpService {
     boolean addEmp(Emp emp);
     boolean deleteEmp(Emp emp);
     boolean updateEmp(Emp emp);
-    Emp getEmpByEmpId(Emp emp);
-    Emp getEmpByEmpAccountAndPass(Emp emp);
-    Emp getEmpByEmpAccount(Emp emp);
-    List<Emp> getEmpByJobId(Emp emp);
+    Emp getEmpByEmpId(int emp_id);
+    Emp getEmpByEmpAccountAndPass(String emp_account,String emp_pass);
+    Emp getEmpByEmpAccount(String emp_account);
+    List<Emp> getEmpByJobId(int emp_job_id);
     List<Emp> getEmpByJobIdAndLimit(int job_id,int beginIndex,int pageSize);
     List<Emp> getAllEmps();
     List<Emp> getAllEmpsByLimit(int beginIndex,int pageSize);

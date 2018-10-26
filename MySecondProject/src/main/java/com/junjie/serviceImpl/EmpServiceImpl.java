@@ -41,31 +41,40 @@ public class EmpServiceImpl implements EmpService {
         return true;
     }
 
-    public Emp getEmpByEmpId(Emp emp) {
-        if (emp==null){
+    public Emp getEmpByEmpId(int emp_id) {
+        if (emp_id<1){
             return null;
         }
+        Emp emp=new Emp();
+        emp.setEmp_id(emp_id);
         return empDao.getEmpByEmpId(emp);
     }
 
-    public Emp getEmpByEmpAccountAndPass(Emp emp) {
-        if (emp==null){
+    public Emp getEmpByEmpAccountAndPass(String emp_account,String emp_pass) {
+        if (emp_account==null||emp_pass==null){
             return null;
         }
+        Emp emp=new Emp();
+        emp.setEmp_account(emp_account);
+        emp.setEmp_pass(emp_pass);
         return empDao.getEmpByEmpAccountAndPass(emp);
     }
 
-    public Emp getEmpByEmpAccount(Emp emp) {
-        if (emp==null){
+    public Emp getEmpByEmpAccount(String emp_account) {
+        if (emp_account==null){
             return null;
         }
+        Emp emp=new Emp();
+        emp.setEmp_account(emp_account);
         return empDao.getEmpByEmpAccount(emp);
     }
 
-    public List<Emp> getEmpByJobId(Emp emp) {
-        if (emp==null){
+    public List<Emp> getEmpByJobId(int emp_job_id) {
+        if (emp_job_id<1){
             return null;
         }
+        Emp emp=new Emp();
+        emp.setEmp_job_id(emp_job_id);
         return empDao.getEmpByJobId(emp);
     }
 

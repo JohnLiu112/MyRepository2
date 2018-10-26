@@ -41,17 +41,22 @@ public class ItvServiceImpl implements ItvInfoService {
         return true;
     }
 
-    public ItvInfo getItvInfoById(ItvInfo itvInfo) {
-        if (itvInfo==null){
+    public ItvInfo getItvInfoById(int itvInfo_id) {
+        if (itvInfo_id<1){
             return null;
         }
+        ItvInfo itvInfo=new ItvInfo();
+        itvInfo.setItvInfo_id(itvInfo_id);
         return itvInfoDao.getItvInfoById(itvInfo);
     }
 
-    public ItvInfo getItvInfoByOfferId(ItvInfo itvInfo) {
-        if (itvInfo==null){
+    public ItvInfo getItvInfoByOfferId(int itvInfo_offer_id) {
+        if (itvInfo_offer_id<1){
             return null;
         }
+
+        ItvInfo itvInfo=new ItvInfo();
+        itvInfo.setItvInfo_offer_id(itvInfo_offer_id);
         return itvInfoDao.getItvInfoByOfferId(itvInfo);
     }
 
@@ -67,10 +72,12 @@ public class ItvServiceImpl implements ItvInfoService {
 
     }
 
-    public List<ItvInfo> getItvInfoByUid(ItvInfo itvInfo) {
-        if (itvInfo==null){
+    public List<ItvInfo> getItvInfoByUid(int itvInfo_u_id) {
+        if (itvInfo_u_id<1){
             return null;
         }
+        ItvInfo itvInfo=new ItvInfo();
+        itvInfo.setItvInfo_u_id(itvInfo_u_id);
         return itvInfoDao.getItvInfoByUid(itvInfo);
     }
 

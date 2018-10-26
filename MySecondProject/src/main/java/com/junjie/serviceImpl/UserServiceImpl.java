@@ -49,7 +49,6 @@ public class UserServiceImpl implements UserService {
     public User queryUserByName(String uname) {
         if (uname != null) {
             return userDao.queryUserByName(uname);
-
         }
         return null;
     }

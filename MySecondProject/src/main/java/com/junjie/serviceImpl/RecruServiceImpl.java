@@ -40,17 +40,21 @@ public class RecruServiceImpl implements com.junjie.service.RecruService {
         return true;
     }
 
-    public Recru getRecruById(Recru recru) {
-        if (recru==null){
+    public Recru getRecruById(int recru_id) {
+        if (recru_id<1){
             return null;
         }
+        Recru recru=new Recru();
+        recru.setRecru_id(recru_id);
         return recruDao.getRecruById(recru);
     }
 
-    public List<Recru> getRecruByState(Recru recru) {
-        if (recru==null){
+    public List<Recru> getRecruByState(int recru_state) {
+        if (recru_state!=0||recru_state!=1){
             return null;
         }
+        Recru recru=new Recru();
+        recru.setRecru_state(recru_state);
         return recruDao.getRecruByState(recru);
     }
 

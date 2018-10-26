@@ -34,8 +34,8 @@
 <body id="bd">
 <h1 id="title1" style="text-align: center">欢迎来到主菜单</h1>
 <ul id="u1">
-    <li class="lc1"><a href="user/userLogin" class="ac1">用户登录</a></li>
-    <li class="lc1"><a href="user/userRegister" class="ac1">用户注册</a></li>
+    <li class="lc1"><a href="jump/userLogin" class="ac1">用户登录</a></li>
+    <li class="lc1"><a href="jump/userRegister" class="ac1">用户注册</a></li>
 </ul>
 
 </body>

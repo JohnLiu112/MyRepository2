@@ -12,8 +12,8 @@ public interface JobService {
     boolean addJob(Job job);
     boolean deleteJob(Job job);
     boolean updateJob(Job job);
-    Job getJobById(Job job);
-    List<Job> getJobByDepId(Job job);
+    Job getJobById(int job_id);
+    List<Job> getJobByDepId(int job_dep_id);
     List<Job> getAllJobs();
     List<Job> getJobByDepIdAndLimit(int job_dep_id,int beginIndex,int pageSize);
     List<Job> getJobByLimit(int beginIndex,int pageSize);

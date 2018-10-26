@@ -12,9 +12,9 @@ public interface UserDao {
     //根据用户名字和密码查询用户
     User queryUser(User user);
     //根据用户名字查询用户
-    User queryUserByName(String uname);
+    User queryUserByName(String u_name);
     //根据用户id查询用户
-    User queryUserByUid(int uid);
+    User queryUserByUid(int u_id);
     //增加用户
     void saveUser(User user);
     //删除用户

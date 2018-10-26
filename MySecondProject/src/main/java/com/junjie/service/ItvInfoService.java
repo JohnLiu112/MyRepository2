@@ -12,10 +12,10 @@ public interface ItvInfoService {
     boolean addItvInfo(ItvInfo itvInfo);
     boolean deleteItvInfo(ItvInfo itvInfo);
     boolean updateItvInfo(ItvInfo itvInfo);
-    ItvInfo getItvInfoById(ItvInfo itvInfo);
-    ItvInfo getItvInfoByOfferId(ItvInfo itvInfo);
+    ItvInfo getItvInfoById(int itvInfo_id);
+    ItvInfo getItvInfoByOfferId(int itvInfo_offer_id);
     List<ItvInfo> getItvInfoByUidAndCheckState(int itvInfo_u_id,int itvInfo_u_check_state);
-    List<ItvInfo> getItvInfoByUid(ItvInfo itvInfo);
+    List<ItvInfo> getItvInfoByUid(int itvInfo_u_id);
     List<ItvInfo> getItvInfoByUidAndLimits(int itvInfo_u_id,int beginIndex,int pageSize);
     List<ItvInfo> getItvInfoByUidAndCheckStateAndByLimit(int itvInfo_u_id,int itvInfo_u_check_state,int beginIndex,int pageSize);
 }

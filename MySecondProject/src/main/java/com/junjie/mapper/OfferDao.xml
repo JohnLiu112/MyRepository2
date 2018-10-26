@@ -47,7 +47,7 @@
         where t_off.rn between #{beginIndex} and #{pageSize}
     </select>
     <select id="getOffersByUid" resultType="Offer" parameterType="integer">
-        SELECT * FROM T_OFFER WHERE OFFER_U_ID=#{uid}
+        SELECT * FROM T_OFFER WHERE OFFER_U_ID=#{offer_u_id}
     </select>
     <select id="getOfferByRecruIdAndUid" resultType="Offer" parameterType="integer">
         SELECT * FROM T_OFFER WHERE OFFER_RECRU_ID=#{0} AND OFFER_U_ID=#{1}
@@ -64,5 +64,13 @@
         SELECT t_off.* FROM
         (SELECT rownum rn,t_o.* FROM T_OFFER t_o WHERE OFFER_SENDING_STATE=#{offer_sending_state}) t_off
         where t_off.rn between #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getOfferByEmpStateAndLimits" resultType="Offer" parameterType="hashmap">
+        SELECT t_off.* FROM
+        (SELECT rownum rn,t_o.* FROM T_OFFER t_o WHERE OFFER_EMP_STATE=#{offer_emp_state}) t_off
+        where t_off.rn between #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getOffersByEmpState" resultType="Offer" parameterType="Offer">
+        SELECT * FROM T_OFFER WHERE OFFER_EMP_STATE=#{offer_emp_state}
     </select>
 </mapper>

@@ -4,16 +4,35 @@
     <insert id="addEmp" parameterType="Emp" useGeneratedKeys="true">
         INSERT INTO T_EMP
         VALUES
-        (EMP_SEQ.nextval,#{emp_name},#{emp_account},#{emp_pass},#{emp_gender},#{emp_age}
-        ,#{emp_hometown},#{emp_salary},#{emp_job_id},#{emp_dep_id},#{emp_on_off},#{emp_off_reason}
-        ,#{emp_phoneNum},#{emp_email})
+        (EMP_SEQ.nextval
+        ,#{emp_name}
+        ,#{emp_account}
+        ,#{emp_pass}
+        ,#{emp_gender}
+        ,#{emp_age}
+        ,#{emp_hometown}
+        ,#{emp_salary}
+        ,#{emp_job_id}
+        ,#{emp_dep_id}
+        ,#{emp_on_off}
+        ,#{emp_off_reason}
+        ,#{emp_phoneNum}
+        ,#{emp_email})
     </insert>
     <update id="updateEmp" parameterType="Emp">
-        UPDATE T_EMP SET EMP_NAME=#{emp_name},emp_account=#{emp_account},emp_pass=#{emp_pass},
-        emp_gender=#{emp_gender},emp_hometown=#{emp_hometown},
-        emp_salary=#{emp_salary},emp_job_id=#{emp_job_id},emp_dep_id=#{emp_dep_id},
-        emp_on_off=#{emp_on_off},emp_off_reason=#{emp_off_reason}
-        ,emp_phoneNum=#{emp_phoneNum},emp_email=#{emp_email}
+        UPDATE T_EMP SET
+        EMP_NAME=#{emp_name},
+        emp_account=#{emp_account},
+        emp_pass=#{emp_pass},
+        emp_gender=#{emp_gender},
+        emp_hometown=#{emp_hometown},
+        emp_salary=#{emp_salary},
+        emp_job_id=#{emp_job_id},
+        emp_dep_id=#{emp_dep_id},
+        emp_on_off=#{emp_on_off},
+        emp_off_reason=#{emp_off_reason},
+        emp_phoneNum=#{emp_phoneNum},
+        emp_email=#{emp_email}
     </update>
     <delete id="deleteEmp" parameterType="Emp">
         DELETE FROM T_EMP WHERE EMP_ID=#{emp_id}

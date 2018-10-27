@@ -23,7 +23,7 @@ public class UserController {
 
     //用户登录
     @RequestMapping("/loginServlet")
-    public String login( HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String login( HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception {
         User user=new User(request.getParameter("uname"),request.getParameter("upass"));
         User user1 = userService.login(user);
         String log=request.getParameter("autoLogin");
@@ -43,7 +43,7 @@ public class UserController {
     }
     //自动登录检查cookie
     @RequestMapping("/check")
-    public String checkAutoLogin(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response){
+    public String checkAutoLogin(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response)throws Exception{
         User user= (User) session.getAttribute("u");
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
@@ -62,7 +62,7 @@ public class UserController {
     }
     //跳转到注册界面
     @RequestMapping("/register")
-    public String register(Model model, HttpServletRequest request){
+    public String register(Model model, HttpServletRequest request)throws Exception{
         String pass2=request.getParameter("userpass2");
         User user=new User(request.getParameter("username"),request.getParameter("userpass1"));
         if (user.getU_pass().equals(pass2)){
@@ -85,13 +85,13 @@ public class UserController {
     }
     //跳转到管理员登录界面
     @RequestMapping("/adminLogin")
-    public String adminLogin(){
+    public String adminLogin()throws Exception{
         return "menu/AdminLogin";
     }
 
     //管理员登录
     @RequestMapping("/adminLogin1")
-    public String adminLogin1(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String adminLogin1(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception{
         String adminName=request.getParameter("adminname");
         String adminPass=request.getParameter("adminpass");
         String log =request.getParameter("autoLogin");
@@ -112,7 +112,7 @@ public class UserController {
     }
     //管理员自动登录检查
     @RequestMapping("/checkAdminLogin")
-    public String checkAdminLogin(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response){
+    public String checkAdminLogin(HttpSession session,  HttpServletRequest request)throws Exception{
         String adminName= (String) session.getAttribute("adminName");
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {

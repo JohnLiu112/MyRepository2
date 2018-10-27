@@ -9,7 +9,7 @@
     <update id="updateDep" parameterType="Dep" >
         UPDATE T_DEP SET DEP_NAME=#{dep_name},
         dep_create_time=#{dep_create_time},dep_emp_num=#{dep_emp_num}
-        where dep_id=dep_id
+        where dep_id=#{dep_id}
     </update>
     <delete id="deleteDep" parameterType="Dep">
         DELETE FROM T_DEP WHERE DEP_ID=#{dep_id}

@@ -14,6 +14,7 @@ public interface JobService {
     boolean updateJob(Job job);
     Job getJobById(int job_id);
     List<Job> getJobByDepId(int job_dep_id);
+    Job getJobByDepIdAndName(int job_dep_id,String job_name);
     List<Job> getAllJobs();
     List<Job> getJobByDepIdAndLimit(int job_dep_id,int beginIndex,int pageSize);
     List<Job> getJobByLimit(int beginIndex,int pageSize);

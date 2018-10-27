@@ -32,7 +32,7 @@ public class ResumeController {
     }*/
     //新增个人简历
     @RequestMapping("/saveResume")
-    public String saveResume(HttpSession session, HttpServletRequest request){
+    public String saveResume(HttpSession session, HttpServletRequest request)throws Exception{
         User u= (User) session.getAttribute("u");
         Resume resume=new Resume(request.getParameter("rsm_name"),request.getParameter("rsm_gender"),
                 Integer.parseInt(request.getParameter("rsm_age")),request.getParameter("rsm_nationality"),
@@ -55,11 +55,9 @@ public class ResumeController {
     }
     //查看个人简历
     @RequestMapping("/checkMyResume")
-    public String checkMyResume(HttpSession session,HttpServletRequest request){
+    public String checkMyResume(HttpSession session,HttpServletRequest request)throws Exception{
         User u= (User) session.getAttribute("u");
-        Resume resume=new Resume();
-        resume.setRsm_u_id(u.getU_id());
-        Resume resume1=resumeService.getResumeByUid(resume);
+        Resume resume1=resumeService.getResumeByUid(u.getU_id());
         if (resume1==null){
             return "redirect:checkRecru?currentPage=1";
         }
@@ -67,7 +65,7 @@ public class ResumeController {
     }
     //更新个人简历
     @RequestMapping("/updateResume")
-    public String updateResume(HttpSession session, HttpServletRequest request){
+    public String updateResume(HttpSession session, HttpServletRequest request)throws Exception{
         User u= (User) session.getAttribute("u");
         Resume resume=new Resume(request.getParameter("rsm_name"),request.getParameter("rsm_gender"),
                 Integer.parseInt(request.getParameter("rsm_age")),request.getParameter("rsm_nationality"),
@@ -90,7 +88,7 @@ public class ResumeController {
     }
     //删除个人简历
     @RequestMapping("/deleteResume")
-    public String deleteResume(HttpSession session, HttpServletRequest request){
+    public String deleteResume(HttpSession session, HttpServletRequest request)throws Exception{
         User u= (User) session.getAttribute("u");
         Resume resume=new Resume(request.getParameter("rsm_name"),request.getParameter("rsm_gender"),
                 Integer.parseInt(request.getParameter("rsm_age")),request.getParameter("rsm_nationality"),

@@ -36,7 +36,7 @@ public class RecruController {
     private OfferEmailService offerEmailService;
     //主页面有招聘信息，登陆过后也要跳转到查看招聘信息controller
     @RequestMapping("/checkRecru")
-    public String checkRecru(HttpSession session, HttpServletRequest request) {
+    public String checkRecru(HttpSession session, HttpServletRequest request)throws Exception {
         User u= (User) session.getAttribute("u");
         System.out.println(u.getU_id());
         List<ItvInfo> itvInfos=itvInfoService.getItvInfoByUidAndCheckState(u.getU_id(),0);
@@ -56,7 +56,7 @@ public class RecruController {
     }
     //游客页面中查看某一条招聘信息内容
     @RequestMapping("/checkRecruDetails")
-    public String checkRecruDetails(HttpSession session, HttpServletRequest request) {
+    public String checkRecruDetails(HttpSession session, HttpServletRequest request)throws Exception {
         int recru_id = Integer.parseInt(request.getParameter("recru_id"));
         System.out.println(recru_id);
         Recru recru1 = recruService.getRecruById(recru_id);
@@ -69,7 +69,7 @@ public class RecruController {
     }
     //申请职位
     @RequestMapping("/job_apply")
-    public String jobApply(HttpServletRequest request, HttpSession session) {
+    public String jobApply(HttpServletRequest request, HttpSession session) throws Exception{
         int recru_id = Integer.parseInt(request.getParameter("recru_id"));
         Recru recru = recruService.getRecruById(recru_id);
         User u = (User) session.getAttribute("u");
@@ -98,7 +98,7 @@ public class RecruController {
     }
     //查看我申请过的招聘信息
     @RequestMapping("/toJobApplied")
-    public String toJobApplied(HttpServletRequest request, HttpSession session) {
+    public String toJobApplied(HttpServletRequest request, HttpSession session)throws Exception {
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
         User u = (User) session.getAttribute("u");
         List<Offer> offers1 = offerService.getOffersByUid(u.getU_id());
@@ -138,7 +138,7 @@ public class RecruController {
     }*/
     //添加招聘信息
     @RequestMapping("/saveRecru")
-    public String saveRecru(HttpServletRequest request) {
+    public String saveRecru(HttpServletRequest request) throws Exception{
         Recru recru = new Recru(
                 request.getParameter("recru_job_name"),
                 request.getParameter("recru_firm_name"),
@@ -164,7 +164,7 @@ public class RecruController {
 
     //查看已收求职信息
     @RequestMapping("/toCheckRecrus")
-    public String toCheckRecrus(HttpSession session, HttpServletRequest request) {
+    public String toCheckRecrus(HttpSession session, HttpServletRequest request) throws Exception{
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
         List<Offer> offers1 = offerService.getOffersBySendingState(0);
         int totalPages = DoPage.getTotalPages(offers1.size());
@@ -184,7 +184,7 @@ public class RecruController {
     }
     //游客主页面-查看所有面试消息
     @RequestMapping("/toCheckItved2")
-    public String toCheckItved2(HttpSession session, HttpServletRequest request) {
+    public String toCheckItved2(HttpSession session, HttpServletRequest request)throws Exception {
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
         List<Offer> offers1 = offerService.getOffersBySendingState(0);
         int totalPages = DoPage.getTotalPages(offers1.size());
@@ -205,7 +205,7 @@ public class RecruController {
 
     //管理员-查看申请人简历
     @RequestMapping("/checkResumes")
-    public String checkResumes(HttpServletRequest request, HttpSession session) {
+    public String checkResumes(HttpServletRequest request, HttpSession session) throws Exception{
         int offer_resume_id = Integer.parseInt(request.getParameter("offer_resume_id"));
         int offer_recru_id = Integer.parseInt(request.getParameter("offer_recru_id"));
         int offer_id = Integer.parseInt(request.getParameter("offer_id"));
@@ -224,7 +224,7 @@ public class RecruController {
     }
     //查看已面试过的人-查看申请人简历
     @RequestMapping("/checkResumes2")
-    public String checkResumes2(HttpServletRequest request, HttpSession session) {
+    public String checkResumes2(HttpServletRequest request, HttpSession session)throws Exception {
         int offer_resume_id = Integer.parseInt(request.getParameter("offer_resume_id"));
         int offer_recru_id = Integer.parseInt(request.getParameter("offer_recru_id"));
         int offer_id = Integer.parseInt(request.getParameter("offer_id"));
@@ -243,7 +243,7 @@ public class RecruController {
 
     //发送面试
     @RequestMapping("/sendOffer")
-    public String sendOffer(HttpServletRequest request, HttpSession session) {
+    public String sendOffer(HttpServletRequest request, HttpSession session) throws Exception{
         int offer_id = (Integer) session.getAttribute("offer_id");
         int offer_u_id = (Integer) session.getAttribute("offer_u_id");
         int offer_recru_id = (Integer) session.getAttribute("offer_recru_id");
@@ -263,7 +263,7 @@ public class RecruController {
 
     //游客主页面-您有未查看面试的消息
     @RequestMapping("/checkItvInfo1")
-    public String checkItvInfo1(HttpSession session,HttpServletRequest request){
+    public String checkItvInfo1(HttpSession session,HttpServletRequest request)throws Exception{
         User u= (User) session.getAttribute("u");
         List<ItvInfo> itvInfos1=itvInfoService.getItvInfoByUidAndCheckState(u.getU_id(),0);
         int totalPages = DoPage.getTotalPages(itvInfos1.size());
@@ -285,7 +285,7 @@ public class RecruController {
 
     //游客主页面-查看所有面试消息
     @RequestMapping("/checkItvInfo2")
-    public String checkItvInfo2(HttpSession session,HttpServletRequest request){
+    public String checkItvInfo2(HttpSession session,HttpServletRequest request)throws Exception{
         User u= (User) session.getAttribute("u");
         List<ItvInfo> itvInfos=itvInfoService.getItvInfoByUid(u.getU_id());
         int totalPages = DoPage.getTotalPages(itvInfos.size());
@@ -335,7 +335,7 @@ public class RecruController {
     }
     //管理员界面-查看所有招聘信息
     @RequestMapping("/toCheckAllRecrus")
-    public String toCheckAllRecrus(HttpServletRequest request,HttpSession session){
+    public String toCheckAllRecrus(HttpServletRequest request,HttpSession session)throws Exception{
         List<Recru> recrus = recruService.getAllRecrus();
         int totalPages = DoPage.getTotalPages(recrus.size());
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -350,7 +350,7 @@ public class RecruController {
     }
     //管理员-查看招聘信息内容
     @RequestMapping("/checkRecruDetails1")
-    public String checkRecruDetails(HttpServletRequest request,HttpSession session){
+    public String checkRecruDetails(HttpServletRequest request,HttpSession session)throws Exception{
         int recru_id = Integer.parseInt(request.getParameter("recru_id"));
         Recru recru1 = recruService.getRecruById(recru_id);
         if (recru1 != null) {
@@ -362,7 +362,7 @@ public class RecruController {
     }
     //管理员-到修改招聘信息内容页面
     @RequestMapping("/toUpdateRecruDetails1")
-    public String toUpdateRecruDetails1(HttpServletRequest request,HttpSession session){
+    public String toUpdateRecruDetails1(HttpServletRequest request,HttpSession session)throws Exception{
         int recru_id = Integer.parseInt(request.getParameter("recru_id"));
         Recru recru1 = recruService.getRecruById(recru_id);
         if (recru1 != null) {
@@ -374,7 +374,7 @@ public class RecruController {
     }
     //管理员-修改招聘信息内容
     @RequestMapping("/updateRecruDetails1")
-    public String updateRecruDetails1(HttpServletRequest request,HttpSession session){
+    public String updateRecruDetails1(HttpServletRequest request,HttpSession session)throws Exception{
         System.out.println(Integer.parseInt(request.getParameter("recru_state")));
         Recru recru = new Recru(
                 request.getParameter("recru_job_name"),
@@ -400,7 +400,7 @@ public class RecruController {
     }
     //管理员-删除招聘信息
     @RequestMapping("/deleteRecruDetails1")
-    public String deleteRecruDetails1(HttpSession session,HttpServletRequest request){
+    public String deleteRecruDetails1(HttpSession session,HttpServletRequest request)throws Exception{
         int recru_id = Integer.parseInt(request.getParameter("recru_id"));
         Recru recru = new Recru();
         recru.setRecru_id(recru_id);
@@ -412,7 +412,7 @@ public class RecruController {
     }
 
     @RequestMapping("/confirmItv")
-    public String confirmItv(HttpSession session,HttpServletRequest request){
+    public String confirmItv(HttpSession session,HttpServletRequest request)throws Exception{
         int offer_id=Integer.parseInt(request.getParameter("offer_id"));
         Offer offer=offerService.getOfferById(offer_id);
         if(offer.getOffer_emp_state()==1){
@@ -429,7 +429,7 @@ public class RecruController {
     }
     //查看收到的offer消息
     @RequestMapping("/checkOfferReceived")
-    public String checkOfferReceived(HttpSession session,HttpServletRequest request){
+    public String checkOfferReceived(HttpSession session,HttpServletRequest request)throws Exception{
         User u= (User) session.getAttribute("u");
         int currentPage=Integer.parseInt(request.getParameter("currentPage"));
         List<OfferEmail> offerEmails=offerEmailService.getAllOfferEmailsByUid(u.getU_id());
@@ -445,17 +445,23 @@ public class RecruController {
     }
     //管理员-查看已经确认面试的人
     @RequestMapping("/toCheckItved")
-    public String toCheckItved(HttpSession session,HttpServletRequest request){
+    public String toCheckItved(HttpSession session,HttpServletRequest request)throws Exception{
+        List<Recru> recrus=recruService.getAllRecrus();
+        System.out.println(recrus);
         int currentPage=Integer.parseInt(request.getParameter("currentPage"));
-        List<Offer> offers=offerService.getOffersByEmpState(1);
+        System.out.println(currentPage);
+        List<Offer> offers=offerService.getOffersBySendingState(1);
+        System.out.println(offers);
         int totalPages = DoPage.getTotalPages(offers.size());
-        List<Offer> offers1=offerService.getOfferByEmpStateAndLimits(1,currentPage,PAGESIZE);
+        List<Offer> offers1=offerService.getOfferBySendingStateAndLimits(1,currentPage,PAGESIZE);
+        System.out.println(offers1);
         if (offers1!=null){
             session.setAttribute("offers1",offers1);
+            session.setAttribute("recrus",recrus);
             session.setAttribute("totalPages",totalPages);
             return "administor/checkItved";
         }else {
-            return "redirect:/user/adminMenu";
+            return "redirect:/jump/adminMenu";
         }
     }
 

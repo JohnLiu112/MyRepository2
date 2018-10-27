@@ -3,11 +3,11 @@
 <mapper namespace="com.junjie.dao.JobDao">
     <insert id="addJob" parameterType="Job" useGeneratedKeys="true">
         INSERT into T_JOB VALUES
-        (JOB_SEQ.nextval,#{job_name},#{job_dep_id})
+        (JOB_SEQ.nextval,#{job_name},#{job_dep_id},#{job_emp_num})
     </insert>
     <update id="updateJob" parameterType="Job">
         UPDATE T_JOB SET
-        JOB_NAME=#{job_name},job_dep_id=#{job_dep_id}
+        JOB_NAME=#{job_name},job_dep_id=#{job_dep_id},job_emp_num=#{job_emp_num}
         where job_id=#{job_id}
     </update>
     <delete id="deleteJob" parameterType="Job">
@@ -31,5 +31,8 @@
          SELECT t_jb.* FROM
         (SELECT rownum rn,t_j.* FROM T_JOB t_j) t_jb
         WHERE t_jb.rn BETWEEN #{beginIndex} and #{pageSize}
+    </select>
+    <select id="getJobByDepIdAndName" resultType="Job" parameterType="Job">
+        SELECT * FROM T_JOB WHERE JOB_NAME=#{job_name} and job_dep_id=#{job_dep_id}
     </select>
 </mapper>

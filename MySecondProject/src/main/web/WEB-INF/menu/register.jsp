@@ -142,8 +142,8 @@
     </fieldset>
     <div id="d4">
         <input type="submit" name="注册" value="注册" style="font-size: 20px">
-        <a href="user/userLogin" class="linkc1">返回登录界面</a>
-        <a href="user/user" class="linkc1">返回主界面</a>
+        <a href="/jump/userLogin" class="linkc1">返回登录界面</a>
+        <a href="/jump/backToSuperMenu" class="linkc1">返回主界面</a>
     </div>
 
 

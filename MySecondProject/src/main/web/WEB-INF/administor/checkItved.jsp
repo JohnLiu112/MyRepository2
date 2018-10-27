@@ -20,8 +20,7 @@
 <form action="" method="post">
     <div>
         <table border="1">
-            <c:forEach var="o" items="${sessionScope.offers}">
-
+            <c:forEach var="o" items="${sessionScope.offers1}">
                 <tr>
                     <td>
                         <c:forEach items="${sessionScope.recrus}" var="r">
@@ -30,6 +29,7 @@
                             </c:if>
                         </c:forEach>
                     </td>
+
                     <form action="" method="post">
                         <td>
                             <input type="submit"  value="查看申请人简历" onclick="this.form.action='recru/checkResumes2'">
@@ -39,6 +39,14 @@
                             <input type="hidden" name="offer_u_id" value="${o.offer_u_id}">
                         </td>
                     </form>
+                    <td style="color: red" rowspan="3">
+                        <c:if test="${o.offer_emp_state==2}">
+                            <c:out value="offer已发送"></c:out>
+                        </c:if>
+                        <c:if test="${o.offer_emp_state==1}">
+                            <c:out value="offer未发送"></c:out>
+                        </c:if>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -77,12 +85,12 @@
 
         <c:if test="${sessionScope.totalPages!=0}">
             <c:forEach  begin="1" end="${sessionScope.totalPages}" var="i">
-                <a href="recru/toJobApplied?currentPage=${i}">${i}</a>
+                <a href="recru/toCheckItved?currentPage=${i}">${i}</a>
             </c:forEach>
         </c:if>
     </div>
 </form>
-<form action="user/adminMenu" method="post">
+<form action="jump/adminMenu" method="post">
     <input type="submit" value="返回">
 </form>
 </body>

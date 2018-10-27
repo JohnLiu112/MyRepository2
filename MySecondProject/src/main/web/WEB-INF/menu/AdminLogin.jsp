@@ -52,7 +52,7 @@
         </div>
         <div class="dc2">
             <input type="submit" name="登录" value="登录" onclick="this.form.action='user/adminLogin1'">
-            <a href="user/backToSuperMenu" class="linkc1">返回主界面</a>
+            <a href="/jump/backToSuperMenu" class="linkc1">返回主界面</a>
             <a href="user/checkAdminLogin" class="linkc1">自动登陆</a>
         </div>
     </div>

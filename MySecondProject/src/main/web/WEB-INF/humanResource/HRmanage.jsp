@@ -30,10 +30,10 @@
 <body>
 <h1 id="title1" style="text-align: center">人事管理菜单</h1>
 <ul id="u1">
-    <li class="lc1"><a href="jump/toAddNewDep" class="ac1">新增部门</a></li>
-    <li class="lc1"><a href="admin/" class="ac1">新增职位</a></li>
+    <li class="lc1"><a href="jump/toAddNewDep" class="ac1">部门管理</a></li>
+    <li class="lc1"><a href="/jump/toAddJobDep" class="ac1">职位管理</a></li>
     <li class="lc1"><a href="admin/toCheckJob" class="ac1">查看职位</a></li>
-    <li class="lc1"><a href="admin/" class="ac1">查看员工</a></li>
+    <li class="lc1"><a href="admin/tocheckEmp" class="ac1">查看员工</a></li>
     <li class="lc1"><a href="jump/adminMenu" class="ac1">返回</a></li>
 </ul>
 </body>

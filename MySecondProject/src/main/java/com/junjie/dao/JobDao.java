@@ -14,6 +14,7 @@ public interface JobDao {
     void updateJob(Job job);
     Job getJobById(Job job);
     List<Job> getJobByDepId(Job job);
+    Job getJobByDepIdAndName(Job job);
     List<Job> getAllJobs();
     List<Job> getJobByDepIdAndLimit(HashMap<String,Object> hashMap);
     List<Job> getJobByLimit(HashMap<String,Object> hashMap);

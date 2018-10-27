@@ -21,9 +21,9 @@
     <c:forEach var="i" items="${sessionScope.itvInfos}">
         <span><c:out value="${i.itvInfo_info}"></c:out></span>
         <span><c:out value="${i.itvInfo_itv_time}"></c:out></span>
-    </c:forEach>
     <input type="submit" value="确认面试" onclick="this.form.action='recru/confirmItv'">
     <input type="hidden" name="offer_id" value="${i.itvInfo_offer_id}">
+    </c:forEach>
     <br/>
     <c:if test="${sessionScope.totalPages!=0}">
         <c:forEach  begin="1" end="${sessionScope.totalPages}" var="i">

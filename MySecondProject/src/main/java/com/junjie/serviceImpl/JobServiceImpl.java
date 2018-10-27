@@ -59,6 +59,16 @@ public class JobServiceImpl implements JobService {
         return jobDao.getJobByDepId(job);
     }
 
+    public Job getJobByDepIdAndName(int job_dep_id, String job_name) {
+        if (job_dep_id<1||job_name==null){
+            return null;
+        }
+        Job job=new Job();
+        job.setJob_dep_id(job_dep_id);
+        job.setJob_name(job_name);
+        return jobDao.getJobByDepIdAndName(job);
+    }
+
     public List<Job> getAllJobs() {
         return jobDao.getAllJobs();
     }

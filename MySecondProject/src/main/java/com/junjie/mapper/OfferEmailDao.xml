@@ -3,8 +3,8 @@
 <mapper namespace="com.junjie.dao.OfferEmailDao">
     <insert id="addOfferEmail" parameterType="OfferEmail" useGeneratedKeys="true">
         INSERT INTO T_OFFEREMAIL
-        VALUES (OFFEREMAIL_SEQ.nextval,#{oe_info},#{oe_emp_name},#{oe_emp_pass})
-        #{oe_u_id}
+        VALUES (OFFEREMAIL_SEQ.nextval,#{oe_info},#{oe_emp_name},#{oe_emp_pass},#{oe_u_id}
+        )
     </insert>
     <update id="updateOfferEmail" parameterType="OfferEmail">
         UPDATE T_OFFEREMAIL SET OE_INFO=#{oe_info},oe_emp_name=#{oe_emp_name},oe_emp_pass=#{oe_emp_pass}
